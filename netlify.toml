@@ -1,0 +1,20 @@
+# netlify.toml (Place this in D:\clubpage, NOT inside client or server)
+
+[build]
+  # Build settings for the React app inside the 'client' folder
+  command = "npm run build"   # The command to build your React app
+  publish = "client/build"    # The folder CRA outputs the build to
+  base    = "client"          # Tell Netlify the app lives in the 'client' subfolder
+
+# Proxy rule to forward API requests to your live backend
+[[redirects]]
+  from = "/api/*"                             # Match any request starting with /api/
+  to = "https://record-club-app.onrender.com/:splat"        # Forward to your Render backend URL
+  status = 200                                # Use 200 status for API proxying
+  force = true                                # Ensure this rule is applied even if file exists
+
+# Optional: Redirect rule for single-page app routing (handles browser refreshes)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
