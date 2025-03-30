@@ -57,7 +57,7 @@ function HomePage() {
   const fetchSavedAlbums = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axios.get('/api/albums', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/albums`, {
         params: { sort: sortOption } // Pass the current sortOption as query parameter
       });
       setAlbums(response.data);
@@ -86,7 +86,7 @@ function HomePage() {
     
     try {
       // Make API call to backend search endpoint
-      const response = await axios.get('/api/spotify/search', { 
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/spotify/search`, { 
         params: { q: searchQuery } 
       });
       
@@ -116,7 +116,7 @@ function HomePage() {
 
     try {
       // Make API call to add the album
-      await axios.post('/api/albums', newAlbumData);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/albums`, newAlbumData);
       
       // On success: Re-fetch saved albums to update the UI
       fetchSavedAlbums();
@@ -139,10 +139,10 @@ function HomePage() {
       let response;
       if (isCurrentlyFavorited) {
         // Call Unfavorite API
-        response = await axios.delete(`/api/albums/${albumId}/favorite`);
+        response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/albums/${albumId}/favorite`);
       } else {
         // Call Favorite API
-        response = await axios.post(`/api/albums/${albumId}/favorite`);
+        response = await axios.post(`${process.env.REACT_APP_API_URL}/api/albums/${albumId}/favorite`);
       }
 
       // Update local state immediately for better UX
@@ -174,7 +174,7 @@ function HomePage() {
 
     try {
       // Call Backend API
-      const response = await axios.post(`/api/albums/${albumId}/score`, { score });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/albums/${albumId}/score`, { score });
 
       // Update local state immediately with the updated album from backend
       const updatedAlbum = response.data;
@@ -205,7 +205,7 @@ function HomePage() {
 
     try {
       // Call Backend API to POST comment
-      const response = await axios.post(`/api/albums/${albumId}/comments`, { text });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/albums/${albumId}/comments`, { text });
       const newPopulatedComment = response.data; // Backend should return the new comment with user populated
 
       // Update local state immediately
@@ -231,7 +231,7 @@ function HomePage() {
     setUpdateImageMessage(null);
     
     try {
-      const response = await axios.put('/api/albums/update-all-images');
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/albums/update-all-images`);
       setUpdateImageMessage(`Success: ${response.data.message}`);
       
       // Refresh albums to show updated images

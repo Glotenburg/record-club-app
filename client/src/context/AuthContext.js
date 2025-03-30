@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     setLoading(true);
     try {
-      const response = await axios.post('/api/users/login', { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/login`, { email, password });
       const { token: newToken, user: userData } = response.data;
       
       // Store in localStorage
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, email, password) => {
     setLoading(true);
     try {
-      await axios.post('/api/users/register', { username, email, password });
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, { username, email, password });
       setLoading(false);
       return { success: true };
     } catch (error) {
