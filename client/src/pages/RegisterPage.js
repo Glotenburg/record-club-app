@@ -29,7 +29,7 @@ const RegisterPage = () => {
 
   return (
     <div className="auth-page">
-      <h2>Register for Record Club</h2>
+      <h2>Register for Uppsala Listeners Club</h2>
       {error && <div className="error-message">{error}</div>}
       
       <form onSubmit={handleRegister} className="auth-form">

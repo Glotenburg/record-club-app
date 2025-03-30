@@ -22,7 +22,20 @@ export const AuthProvider = ({ children }) => {
       
       try {
         const decoded = jwtDecode(token); // Decode token payload
-        setUser(decoded.user); // Set user state (assumes payload is { user: { id: ... } })
+        // Make sure the user object includes the role from the decoded token
+        const userData = decoded.user;
+        
+        // If we don't have the user in localStorage or it's missing the role, update it
+        if (!user || !user.role) {
+          const updatedUser = {
+            ...user,
+            id: userData.id,
+            username: userData.username,
+            role: userData.role
+          };
+          setUser(updatedUser);
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+        }
       } catch (error) {
         // Handle potential decoding errors (e.g., invalid token)
         console.error("Failed to decode token:", error);
@@ -37,7 +50,7 @@ export const AuthProvider = ({ children }) => {
       setUser(null);
     }
     setLoading(false);
-  }, [token]);
+  }, [token, user]);
 
   // Login function
   const login = async (email, password) => {
@@ -46,13 +59,20 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/login`, { email, password });
       const { token: newToken, user: userData } = response.data;
       
+      // Ensure the user object has the role property
+      const decodedToken = jwtDecode(newToken);
+      const userWithRole = {
+        ...userData,
+        role: userData.role || decodedToken.user.role // Use role from response or decoded token
+      };
+      
       // Store in localStorage
       localStorage.setItem('token', newToken);
-      localStorage.setItem('user', JSON.stringify(userData));
+      localStorage.setItem('user', JSON.stringify(userWithRole));
       
       // Update state
       setToken(newToken);
-      setUser(userData);
+      setUser(userWithRole);
       
       setLoading(false);
       return { success: true };

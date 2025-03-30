@@ -435,11 +435,14 @@ router.put('/update-all-images', async (req, res) => {
 // @access  Private/Admin
 router.put('/:id/clubscore', protect, isAdmin, async (req, res) => {
   try {
-    const { clubScore } = req.body;
+    const { clubScore, clubOriginalScore } = req.body;
     const albumId = req.params.id;
     
+    // Use either clubScore or clubOriginalScore parameter (for backward compatibility)
+    const scoreToUse = clubScore !== undefined ? clubScore : clubOriginalScore;
+    
     // Validate club score
-    const numericScore = parseFloat(clubScore);
+    const numericScore = parseFloat(scoreToUse);
     if (isNaN(numericScore) || numericScore < 0 || numericScore > 10) {
       return res.status(400).json({ message: 'Club score must be a number between 0 and 10' });
     }
@@ -449,7 +452,7 @@ router.put('/:id/clubscore', protect, isAdmin, async (req, res) => {
       albumId, 
       { clubOriginalScore: numericScore }, 
       { new: true, runValidators: true }
-    );
+    ).populate('scores.userId', 'username');
     
     // Check if album exists
     if (!updatedAlbum) {
@@ -461,6 +464,52 @@ router.put('/:id/clubscore', protect, isAdmin, async (req, res) => {
     
   } catch (err) {
     console.error('Error updating club score:', err.message);
+    
+    // Check if this is a CastError (invalid ID format)
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ message: 'Album not found' });
+    }
+    
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @route   PUT /api/albums/:id
+// @desc    Update album details (including trivia)
+// @access  Private/Admin
+router.put('/:id', protect, isAdmin, async (req, res) => {
+  try {
+    const albumId = req.params.id;
+    const updateData = req.body;
+    
+    // Prevent overwriting critical fields or adding unwanted fields
+    const allowedUpdates = ['title', 'artist', 'releaseYear', 'genre', 'trivia'];
+    const updateObject = {};
+    
+    // Only include allowed fields that are present in the request
+    for (const field of allowedUpdates) {
+      if (field in updateData) {
+        updateObject[field] = updateData[field];
+      }
+    }
+    
+    // Find and update the album
+    const updatedAlbum = await Album.findByIdAndUpdate(
+      albumId, 
+      updateObject, 
+      { new: true, runValidators: true }
+    ).populate('scores.userId', 'username');
+    
+    // Check if album exists
+    if (!updatedAlbum) {
+      return res.status(404).json({ message: 'Album not found' });
+    }
+    
+    // Return the updated album
+    res.status(200).json(updatedAlbum);
+    
+  } catch (err) {
+    console.error('Error updating album details:', err.message);
     
     // Check if this is a CastError (invalid ID format)
     if (err.kind === 'ObjectId') {

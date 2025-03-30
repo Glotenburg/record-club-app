@@ -59,66 +59,96 @@ main {
 .auth-page {
   max-width: 400px;
   margin: 40px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border: 1px solid #2d3748;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #1a202c;
 }
 
 .auth-page h2 {
   margin-top: 0;
-  color: #333;
+  color: #f6ad55;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  font-size: 1.75rem;
 }
 
 .auth-form .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .auth-form label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-weight: bold;
   text-align: left;
+  color: #e2e8f0;
 }
 
 .auth-form input {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 10px 12px;
+  border: 1px solid #4a5568;
+  border-radius: 6px;
   font-size: 16px;
+  background-color: #2d3748;
+  color: #e2e8f0;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #f6ad55;
+  box-shadow: 0 0 0 2px rgba(246, 173, 85, 0.2);
 }
 
 .auth-form button {
   width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
+  padding: 12px;
+  background-color: #ed8936;
+  color: #1a202c;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 16px;
+  transition: background-color 0.2s;
 }
 
 .auth-form button:hover {
-  background-color: #45a049;
+  background-color: #dd6b20;
 }
 
 .auth-form button:disabled {
-  background-color: #cccccc;
+  background-color: #718096;
   cursor: not-allowed;
 }
 
 .auth-redirect {
-  margin-top: 15px;
+  margin-top: 20px;
   text-align: center;
   font-size: 14px;
+  color: #a0aec0;
+}
+
+.auth-redirect a {
+  color: #f6ad55;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-redirect a:hover {
+  text-decoration: underline;
 }
 
 .error-message {
+  color: #fff;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: #c53030;
+  border-radius: 6px;
   color: #f44336;
   margin-bottom: 15px;
   padding: 10px;

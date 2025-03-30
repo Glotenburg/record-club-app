@@ -27,7 +27,7 @@ const LoginPage = () => {
 
   return (
     <div className="auth-page">
-      <h2>Log In to Record Club</h2>
+      <h2>Log In to Uppsala Listeners Club</h2>
       {error && <div className="error-message">{error}</div>}
       
       <form onSubmit={handleLogin} className="auth-form">
