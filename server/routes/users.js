@@ -72,7 +72,8 @@ router.post('/login', async (req, res) => {
     const payload = {
       user: {
         id: user.id,
-        username: user.username
+        username: user.username,
+        role: user.role
       }
     };
 
@@ -83,7 +84,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: '1h' },
       (err, token) => {
         if (err) throw err;
-        res.json({ token, user: { id: user.id, username: user.username, email: user.email } });
+        res.json({ token, user: { id: user.id, username: user.username, email: user.email, role: user.role } });
       }
     );
   } catch (error) {

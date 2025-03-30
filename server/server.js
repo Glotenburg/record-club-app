@@ -16,7 +16,7 @@ const app = express();
 // --- CORRECTED CORS CONFIGURATION ---
 const allowedOrigins = [
   'http://localhost:3000',                      // Allow local development frontend
-  'https://remarkable-fairy-ca5075.netlify.app' // Allow your deployed Netlify frontend
+  'https://remarkable-fairy-ca5075.netlify.app', // Allow your deployed Netlify frontend
   'https://listeners-club.se',                // Allow apex custom domain
   'https://www.listeners-club.se'             // Allow www custom domain
   // You could also potentially add process.env.CLIENT_URL here if you set it in Render,

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Album = require('../models/Album');
 const Comment = require('../models/Comment');
-const { protect } = require('../middleware/authMiddleware');
+const { protect, isAdmin } = require('../middleware/authMiddleware');
 const SpotifyWebApi = require('spotify-web-api-node');
 
 // Initialize Spotify API (we'll authenticate later when needed)
@@ -426,6 +426,47 @@ router.put('/update-all-images', async (req, res) => {
     });
   } catch (err) {
     console.error('Error updating all album images:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @route   PUT /api/albums/:id/clubscore
+// @desc    Update an album's club score (admin only)
+// @access  Private/Admin
+router.put('/:id/clubscore', protect, isAdmin, async (req, res) => {
+  try {
+    const { clubScore } = req.body;
+    const albumId = req.params.id;
+    
+    // Validate club score
+    const numericScore = parseFloat(clubScore);
+    if (isNaN(numericScore) || numericScore < 0 || numericScore > 10) {
+      return res.status(400).json({ message: 'Club score must be a number between 0 and 10' });
+    }
+    
+    // Find and update the album
+    const updatedAlbum = await Album.findByIdAndUpdate(
+      albumId, 
+      { clubOriginalScore: numericScore }, 
+      { new: true, runValidators: true }
+    );
+    
+    // Check if album exists
+    if (!updatedAlbum) {
+      return res.status(404).json({ message: 'Album not found' });
+    }
+    
+    // Return the updated album
+    res.status(200).json(updatedAlbum);
+    
+  } catch (err) {
+    console.error('Error updating club score:', err.message);
+    
+    // Check if this is a CastError (invalid ID format)
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ message: 'Album not found' });
+    }
+    
     res.status(500).json({ message: 'Server error' });
   }
 });

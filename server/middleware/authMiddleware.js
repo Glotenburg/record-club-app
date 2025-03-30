@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 require('dotenv').config();
 
 /**
@@ -21,8 +22,15 @@ const protect = async (req, res, next) => {
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      // Attach user id to the request object (excluding password)
-      req.user = decoded.user; // Contains the user ID
+      // Fetch the user from the database (excluding password)
+      const user = await User.findById(decoded.user.id).select('-password');
+      
+      if (!user) {
+        return res.status(401).json({ msg: 'User not found' });
+      }
+
+      // Attach full user to the request object
+      req.user = user;
 
       next(); // Move to the next middleware/route handler
     } catch (error) {
@@ -36,4 +44,18 @@ const protect = async (req, res, next) => {
   }
 };
 
-module.exports = { protect }; 
+/**
+ * Verify if user has admin role
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
+const isAdmin = async (req, res, next) => {
+  if (req.user && req.user.role === 'admin') {
+    next();
+  } else {
+    res.status(403).json({ message: 'Require Admin Role!' });
+  }
+};
+
+module.exports = { protect, isAdmin }; 
