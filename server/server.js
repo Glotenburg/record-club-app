@@ -13,36 +13,34 @@ const userRoutes = require('./routes/users');
 // Initialize Express app
 const app = express();
 
-// Middleware
-// Define allowed origins based on environment
-/* 
+// --- CORRECTED CORS CONFIGURATION ---
 const allowedOrigins = [
-  process.env.CLIENT_URL || 'http://localhost:3000',
-  'http://localhost:5001' // Temporarily add backend origin
+  'http://localhost:3000',                      // Allow local development frontend
+  'https://remarkable-fairy-ca5075.netlify.app' // Allow your deployed Netlify frontend
+  // You could also potentially add process.env.CLIENT_URL here if you set it in Render,
+  // but explicitly listing the known URL is often clearer during setup.
 ];
 
-const corsOptions = {
+app.use(cors({
   origin: function (origin, callback) {
-    console.log('DEBUG CORS - Request Origin:', origin);
-    console.log('DEBUG CORS - Allowed Origins:', allowedOrigins);
-    // Allow requests with no origin (like mobile apps or curl requests) or from allowed origins
+    // Allow requests with no origin (like mobile apps or curl requests)
+    // Allow requests from allowed origins
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
+      // Log blocked origins for debugging (optional)
+      console.warn(`CORS blocked origin: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
+  credentials: true, // Allow cross-origin requests to include credentials like Authorization headers (for JWT)
   optionsSuccessStatus: 200 // For legacy browser support
-  // credentials: true // Uncomment if you need to send cookies/auth headers across domains later
-};
-*/
-
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000', // Allow CLIENT_URL or localhost:3000
-  optionsSuccessStatus: 200 // For legacy browser support
-  // credentials: true // Uncomment later if needed for cross-domain cookies
 }));
-app.use(express.json());
+// --- END OF CORS CONFIGURATION ---
+
+
+// Other Middleware
+app.use(express.json()); // Make sure this comes after CORS middleware if requests need parsing first, though usually order doesn't matter much for these two.
 
 // Define port
 const PORT = process.env.PORT || 5001;
@@ -68,4 +66,4 @@ app.use('/api/spotify', spotifyRoutes);
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-}); 
+});
