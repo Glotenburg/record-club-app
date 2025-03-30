@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
+// We'll no longer use the mongoose-sequence plugin
+// const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 // Define Album Schema
 const albumSchema = new mongoose.Schema({
@@ -73,8 +74,27 @@ albumSchema.virtual('comments', {
   options: { sort: { createdAt: -1 } } // Sort comments newest first by default
 });
 
-// Apply the auto-increment plugin to manage the clubEntryNumber field
-albumSchema.plugin(AutoIncrement, { inc_field: 'clubEntryNumber' });
+// Hook to auto-generate clubEntryNumber on save (only if not already set)
+albumSchema.pre('save', async function(next) {
+  // Only set clubEntryNumber if it's a new album and it doesn't already have one
+  if (this.isNew && !this.clubEntryNumber) {
+    try {
+      // Find the current highest clubEntryNumber
+      const highestEntry = await mongoose.model('Album').findOne().sort({ clubEntryNumber: -1 }).select('clubEntryNumber');
+      
+      // Set new clubEntryNumber to highest+1 or 1 if no albums exist
+      this.clubEntryNumber = highestEntry ? (highestEntry.clubEntryNumber + 1) : 1;
+      next();
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    next();
+  }
+});
+
+// Remove the auto-increment plugin
+// albumSchema.plugin(AutoIncrement, { inc_field: 'clubEntryNumber' });
 
 // Create and export the Album model
 const Album = mongoose.model('Album', albumSchema);

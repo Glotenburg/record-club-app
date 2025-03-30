@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import AlbumManagement from '../components/AlbumManagement';
 
 const AdminPage = () => {
   const { user } = useContext(AuthContext);
+  const [activeSection, setActiveSection] = useState(null);
 
   return (
     <div className="p-6 bg-slate-800 rounded-lg max-w-4xl mx-auto shadow-xl">
@@ -15,29 +17,43 @@ const AdminPage = () => {
         <p className="mb-2">Role: <strong className="text-pink-500">{user?.role}</strong></p>
       </div>
       
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="bg-slate-900 p-5 rounded-md shadow-md border-l-4 border-amber-500 hover:shadow-amber-900/20 transition-shadow duration-300">
-          <h2 className="text-xl font-bold mb-3 text-amber-400">User Management</h2>
-          <p className="mb-4 text-gray-300">Manage users and their roles</p>
+      {activeSection ? (
+        <>
           <button 
-            className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-gray-900 font-medium py-2 px-4 rounded-md shadow-md transition duration-200"
-            onClick={() => alert('This functionality is not implemented yet')}
+            onClick={() => setActiveSection(null)}
+            className="mb-4 bg-slate-700 hover:bg-slate-600 text-gray-300 font-medium py-1.5 px-3.5 rounded-md text-sm shadow-md transition duration-200"
           >
-            View Users
+            ← Back to Admin Menu
           </button>
+          
+          {activeSection === 'albums' && <AlbumManagement />}
+          {activeSection === 'users' && <p className="text-gray-300">User management coming soon...</p>}
+        </>
+      ) : (
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="bg-slate-900 p-5 rounded-md shadow-md border-l-4 border-amber-500 hover:shadow-amber-900/20 transition-shadow duration-300">
+            <h2 className="text-xl font-bold mb-3 text-amber-400">User Management</h2>
+            <p className="mb-4 text-gray-300">Manage users and their roles</p>
+            <button 
+              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-gray-900 font-medium py-2 px-4 rounded-md shadow-md transition duration-200"
+              onClick={() => setActiveSection('users')}
+            >
+              View Users
+            </button>
+          </div>
+          
+          <div className="bg-slate-900 p-5 rounded-md shadow-md border-l-4 border-pink-500 hover:shadow-pink-900/20 transition-shadow duration-300">
+            <h2 className="text-xl font-bold mb-3 text-pink-500">Album Administration</h2>
+            <p className="mb-4 text-gray-300">Update album metadata, delete albums, or set club scores</p>
+            <button 
+              className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-gray-900 font-medium py-2 px-4 rounded-md shadow-md transition duration-200"
+              onClick={() => setActiveSection('albums')}
+            >
+              Manage Albums
+            </button>
+          </div>
         </div>
-        
-        <div className="bg-slate-900 p-5 rounded-md shadow-md border-l-4 border-pink-500 hover:shadow-pink-900/20 transition-shadow duration-300">
-          <h2 className="text-xl font-bold mb-3 text-pink-500">Album Administration</h2>
-          <p className="mb-4 text-gray-300">Update album metadata, delete albums, or set club scores</p>
-          <button 
-            className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-gray-900 font-medium py-2 px-4 rounded-md shadow-md transition duration-200"
-            onClick={() => alert('This functionality is not implemented yet')}
-          >
-            Manage Albums
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
