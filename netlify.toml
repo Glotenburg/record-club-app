@@ -3,7 +3,7 @@
 [build]
   # Build settings for the React app inside the 'client' folder
   command = "npm run build"   # The command to build your React app
-  publish = "client/build"    # The folder CRA outputs the build to
+  publish = "build"    # The folder CRA outputs the build to
   base    = "client"          # Tell Netlify the app lives in the 'client' subfolder
 
 # Proxy rule to forward API requests to your live backend

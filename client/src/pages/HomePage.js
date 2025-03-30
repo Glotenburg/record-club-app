@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 
@@ -53,8 +53,8 @@ function HomePage() {
     };
   }, [logout]);
 
-  // Refactor fetching saved albums into a separate function
-  const fetchSavedAlbums = async () => {
+  // Refactor fetching saved albums into a separate function using useCallback
+  const fetchSavedAlbums = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get('/api/albums', {
@@ -68,17 +68,12 @@ function HomePage() {
       setError('Failed to fetch albums');
       setLoading(false);
     }
-  };
+  }, [sortOption, setAlbums, setLoading, setError]);
 
-  // Initial fetch on component mount
+  // Initial fetch on component mount, now depends on fetchSavedAlbums
   useEffect(() => {
     fetchSavedAlbums();
-  }, []);
-  
-  // Re-fetch when sort option changes
-  useEffect(() => {
-    fetchSavedAlbums();
-  }, [sortOption]);
+  }, [fetchSavedAlbums]);
 
   // Create search handler function
   const handleSearch = async (event) => {
