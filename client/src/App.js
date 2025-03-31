@@ -15,7 +15,7 @@ function App() {
   const { isAuthenticated, user, logout } = useContext(AuthContext);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-900 text-gray-100">
+    <div className="min-h-screen flex flex-col background-image text-gray-100">
       <header className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 shadow-lg py-4">
         <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between">
           <div className="flex items-center">
