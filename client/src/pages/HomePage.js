@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AlbumCard from '../components/AlbumCard';
 
@@ -29,6 +30,10 @@ function HomePage() {
   // Add state for updating images
   const [isUpdatingImages, setIsUpdatingImages] = useState(false);
   const [updateImageMessage, setUpdateImageMessage] = useState(null);
+
+  // Add state for active users
+  const [activeUsers, setActiveUsers] = useState([]);
+  const [loadingUsers, setLoadingUsers] = useState(false);
 
   // Get auth context
   const { logout, isAuthenticated, user } = useContext(AuthContext);
@@ -71,10 +76,68 @@ function HomePage() {
     }
   }, [sortOption, setAlbums, setLoading, setError]);
 
-  // Initial fetch on component mount, now depends on fetchSavedAlbums
+  // Fetch active users
+  const fetchActiveUsers = useCallback(async () => {
+    setLoadingUsers(true);
+    try {
+      // Get all unique users who have rated or commented on albums
+      const userMap = new Map();
+      
+      if (albums && albums.length > 0) {
+        // Collect users from scores
+        albums.forEach(album => {
+          if (album.scores && album.scores.length > 0) {
+            album.scores.forEach(score => {
+              if (score.userId && score.userId._id && score.userId.username) {
+                userMap.set(score.userId._id, {
+                  _id: score.userId._id,
+                  username: score.userId.username,
+                  activity: (userMap.get(score.userId._id)?.activity || 0) + 1
+                });
+              }
+            });
+          }
+          
+          // Also collect users from comments
+          if (album.comments && album.comments.length > 0) {
+            album.comments.forEach(comment => {
+              if (comment.author && comment.author._id && comment.author.username) {
+                const userId = comment.author._id;
+                userMap.set(userId, {
+                  _id: userId,
+                  username: comment.author.username,
+                  activity: (userMap.get(userId)?.activity || 0) + 1
+                });
+              }
+            });
+          }
+        });
+        
+        // Convert Map to array and sort by activity (most active first)
+        const usersArray = Array.from(userMap.values());
+        usersArray.sort((a, b) => b.activity - a.activity);
+        
+        // Take top 8 most active users
+        setActiveUsers(usersArray.slice(0, 8));
+      }
+    } catch (err) {
+      console.error('Error processing active users:', err);
+    } finally {
+      setLoadingUsers(false);
+    }
+  }, [albums]);
+
+  // Initial fetch on component mount
   useEffect(() => {
     fetchSavedAlbums();
   }, [fetchSavedAlbums]);
+
+  // Update active users when albums change
+  useEffect(() => {
+    if (albums.length > 0) {
+      fetchActiveUsers();
+    }
+  }, [albums, fetchActiveUsers]);
 
   // Create search handler function
   const handleSearch = async (event) => {
@@ -313,6 +376,30 @@ function HomePage() {
           </div>
         )}
       </div>
+      
+      {/* Active Users Section */}
+      {activeUsers.length > 0 && (
+        <div className="bg-slate-800 bg-opacity-80 rounded-lg shadow-lg p-5 mb-8">
+          <h2 className="text-xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-500">
+            Active Members
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+            {activeUsers.map(user => (
+              <Link 
+                key={user._id} 
+                to={`/profile/${user._id}`}
+                className="flex flex-col items-center text-center transition-all hover:transform hover:scale-105 p-2 rounded-lg hover:bg-slate-700"
+              >
+                <div className="w-14 h-14 rounded-full bg-gradient-to-r from-amber-500 to-purple-600 flex items-center justify-center text-xl font-bold text-slate-900 mb-2 shadow-md">
+                  {user.username.charAt(0).toUpperCase()}
+                </div>
+                <span className="text-gray-200 text-sm font-medium">{user.username}</span>
+                <span className="text-xs text-amber-400 mt-1">{user.activity} {user.activity === 1 ? 'contribution' : 'contributions'}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
       
       {loading ? (
         <p>Loading albums...</p>

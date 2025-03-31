@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 
@@ -202,7 +203,13 @@ const AlbumCard = ({
               <ul className="list-none p-0 m-0 grid grid-cols-2 gap-1">
                 {album.scores.map(scoreEntry => (
                   <li key={scoreEntry._id} className="text-sm text-gray-400">
-                    <span className="text-amber-400">{scoreEntry.userId?.username || 'User'}</span>: {scoreEntry.score.toFixed(1)}
+                    {scoreEntry.userId?._id ? (
+                      <Link to={`/profile/${scoreEntry.userId._id}`} className="text-amber-400 hover:text-amber-300 hover:underline transition-colors">
+                        {scoreEntry.userId.username || 'User'}
+                      </Link>
+                    ) : (
+                      <span className="text-amber-400">{scoreEntry.userId?.username || 'User'}</span>
+                    )}: {scoreEntry.score.toFixed(1)}
                   </li>
                 ))}
               </ul>

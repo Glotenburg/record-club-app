@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AdminPage from './pages/AdminPage';
+import ProfilePage from './pages/ProfilePage';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import { AuthContext } from './context/AuthContext';
@@ -49,6 +50,13 @@ function App() {
               ) : (
                 <>
                   <li className="text-gray-300">Welcome, {user?.username || 'User'}!</li>
+                  {user && (
+                    <li>
+                      <Link to={`/profile/${user._id}`} className="text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium">
+                        My Profile
+                      </Link>
+                    </li>
+                  )}
                   {user && user.role === 'admin' && (
                     <li>
                       <Link to="/admin" className="text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium">
@@ -76,6 +84,7 @@ function App() {
           {/* Public Routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
 
           {/* Protected Routes */}
           <Route element={<PrivateRoute />}>
