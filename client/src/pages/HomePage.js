@@ -33,7 +33,6 @@ function HomePage() {
 
   // Add state for active users
   const [activeUsers, setActiveUsers] = useState([]);
-  const [loadingUsers, setLoadingUsers] = useState(false);
 
   // Get auth context
   const { logout, isAuthenticated, user } = useContext(AuthContext);
@@ -78,7 +77,6 @@ function HomePage() {
 
   // Fetch active users
   const fetchActiveUsers = useCallback(async () => {
-    setLoadingUsers(true);
     try {
       // Get all unique users who have rated or commented on albums
       const userMap = new Map();
@@ -122,8 +120,6 @@ function HomePage() {
       }
     } catch (err) {
       console.error('Error processing active users:', err);
-    } finally {
-      setLoadingUsers(false);
     }
   }, [albums]);
 

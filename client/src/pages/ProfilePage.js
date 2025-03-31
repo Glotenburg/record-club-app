@@ -50,15 +50,6 @@ const ProfilePage = () => {
     setShowAddForm(false); // Auto-close form after successful add
   };
 
-  const handleUpdateAlbum = (updatedAlbum) => {
-    setPersonalAlbums(prevAlbums => 
-      prevAlbums.map(album => 
-        album._id === updatedAlbum._id ? updatedAlbum : album
-      )
-    );
-    setAlbumToEdit(null);
-  };
-
   const handleDeleteAlbum = (albumId) => {
     setPersonalAlbums(prevAlbums => 
       prevAlbums.filter(album => album._id !== albumId)

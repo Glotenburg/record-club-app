@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import PersonalCommentForm from './PersonalCommentForm';
@@ -10,7 +10,7 @@ const PersonalCommentSection = ({ personalAlbumId, buttonStyle, accentStyle }) =
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchComments = async () => {
+  const fetchComments = useCallback(async () => {
     try {
       setLoading(true);
       const response = await axios.get(`/api/personal-albums/${personalAlbumId}/comments`);
@@ -22,13 +22,13 @@ const PersonalCommentSection = ({ personalAlbumId, buttonStyle, accentStyle }) =
     } finally {
       setLoading(false);
     }
-  };
+  }, [personalAlbumId]);
 
   useEffect(() => {
     if (personalAlbumId) {
       fetchComments();
     }
-  }, [personalAlbumId]);
+  }, [personalAlbumId, fetchComments]);
 
   const handleCommentAdded = (newComment) => {
     setComments(prevComments => [newComment, ...prevComments]);
