@@ -165,6 +165,18 @@ main {
   text-align: center;
 }
 
+/* Add media query for smaller screens */
+@media (max-width: 768px) {
+  main {
+    padding: 10px; /* Reduce padding */
+  }
+
+  .auth-page {
+    padding: 20px; /* Reduce padding */
+    margin: 20px auto; /* Reduce top/bottom margin */
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
