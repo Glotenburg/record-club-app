@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
         if (!user || !user.role) {
           const updatedUser = {
             ...user,
-            id: userData.id,
+            _id: userData.id,
             username: userData.username,
             role: userData.role
           };
@@ -63,7 +63,8 @@ export const AuthProvider = ({ children }) => {
       const decodedToken = jwtDecode(newToken);
       const userWithRole = {
         ...userData,
-        role: userData.role || decodedToken.user.role // Use role from response or decoded token
+        _id: userData._id || decodedToken.user.id,
+        role: userData.role || decodedToken.user.role
       };
       
       // Store in localStorage
