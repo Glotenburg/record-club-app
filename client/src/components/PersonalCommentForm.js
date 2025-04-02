@@ -17,7 +17,7 @@ const PersonalCommentForm = ({ personalAlbumId, onCommentAdded, buttonStyle, acc
     setError(null);
     
     try {
-      const response = await axios.post(`/api/personal-albums/${personalAlbumId}/comments`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/personal-albums/${personalAlbumId}/comments`, {
         text: commentText
       });
       
