@@ -124,26 +124,38 @@ const AlbumCard = ({
   return (
     <li className="bg-slate-800 rounded-lg p-5 mb-5 shadow-lg border border-slate-700 hover:shadow-amber-900/10 transition-shadow duration-300">
       {/* --- Always Visible Section --- */}
-      <div className="flex flex-col sm:flex-row sm:items-start gap-5">
-        {/* Cover Art (Clickable) */}
+      <div 
+        className="flex flex-col sm:flex-row sm:items-start gap-5 cursor-pointer" 
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        {/* Cover Art */}
         {album.coverArtUrl && (
           <img
             src={album.coverArtUrl}
             alt={album.title}
-            className="w-36 h-36 sm:w-48 sm:h-48 object-cover rounded-md flex-shrink-0 mx-auto sm:mx-0 shadow-md cursor-pointer"
-            onClick={() => setIsExpanded(!isExpanded)}
+            className="w-36 h-36 sm:w-48 sm:h-48 object-cover rounded-md flex-shrink-0 mx-auto sm:mx-0 shadow-md"
           />
         )}
 
         {/* Basic Info + Toggle Button */}
         <div className="flex-grow">
-          {/* Title & Artist (Clickable) */}
-           <div onClick={() => setIsExpanded(!isExpanded)} className="cursor-pointer">
-               <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-500">{album.title}</h3>
+          {/* Title & Artist */}
+           <div> 
+               <h3 className="text-xl font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-500">{album.title}</h3>
                <p className="mb-1 text-gray-300"><strong className="text-gray-200">Artist:</strong> {album.artist}</p>
+               {/* Display Club Score if available */}
+                {album.clubOriginalScore !== null && album.clubOriginalScore !== undefined && (
+                    <p className="mb-2 text-gray-300 flex items-center"><span className="text-yellow-400 mr-1 text-lg">⭐</span> <strong className="text-gray-200">Club Score:</strong> {album.clubOriginalScore.toFixed(1)}</p>
+                )}
            </div>
-          {/* Show More/Less Button */}
-          <button onClick={() => setIsExpanded(!isExpanded)} className="text-sm text-amber-400 mt-2 hover:text-amber-300 font-medium">
+          {/* Show More/Less Button - Stop propagation to prevent immediate re-toggle */}
+          <button 
+              onClick={(e) => {
+                  e.stopPropagation();
+                  setIsExpanded(!isExpanded); 
+              }} 
+              className="text-sm text-amber-400 mt-2 hover:text-amber-300 font-medium"
+          >
               {isExpanded ? 'Show Less Details' : 'Show More Details'}
           </button>
         </div>
