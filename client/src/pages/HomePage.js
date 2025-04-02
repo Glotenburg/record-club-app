@@ -360,12 +360,15 @@ function HomePage() {
                     <div className="font-medium text-gray-100">{result.title}</div>
                     <div className="text-sm text-gray-400">{result.artists.join(', ')} ({result.releaseYear})</div>
                   </div>
-                  <button 
-                    onClick={() => handleAddAlbum(result)}
-                    className="ml-auto bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-gray-900 font-medium py-1.5 px-3.5 rounded-md text-sm flex-shrink-0 shadow-md transition duration-200"
-                  >
-                    Add to Club
-                  </button>
+                  {/* Only show Add button if user is admin */}
+                  {isAuthenticated && user && user.role === 'admin' && (
+                    <button 
+                      onClick={() => handleAddAlbum(result)}
+                      className="ml-auto bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-gray-900 font-medium py-1.5 px-3.5 rounded-md text-sm flex-shrink-0 shadow-md transition duration-200"
+                    >
+                      Add to Club
+                    </button>
+                  )}
                 </div>
               ))}
             </div>

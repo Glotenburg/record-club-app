@@ -95,8 +95,8 @@ router.get('/', async (req, res) => {
 
 // @route   POST /api/albums
 // @desc    Add a new album
-// @access  Public (would be Private in a real app with auth)
-router.post('/', async (req, res) => {
+// @access  Private/Admin
+router.post('/', protect, isAdmin, async (req, res) => {
   try {
     // Create a new album using the data from the request body
     const newAlbum = new Album(req.body);
@@ -516,6 +516,42 @@ router.put('/:id', protect, isAdmin, async (req, res) => {
       return res.status(404).json({ message: 'Album not found' });
     }
     
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @route   DELETE /api/albums/:id
+// @desc    Delete an album
+// @access  Private/Admin
+router.delete('/:id', protect, isAdmin, async (req, res) => {
+  try {
+    const albumId = req.params.id;
+
+    // Find the album to be deleted
+    const album = await Album.findById(albumId);
+
+    if (!album) {
+      return res.status(404).json({ message: 'Album not found' });
+    }
+
+    // Delete the album
+    await Album.findByIdAndDelete(albumId);
+
+    // Also delete associated comments
+    await Comment.deleteMany({ albumId: albumId });
+
+    // Optionally: Could also remove scores/favorites associated if needed, 
+    // but deleting the album itself might be sufficient depending on requirements.
+
+    res.status(200).json({ message: 'Album and associated comments deleted successfully' });
+
+  } catch (err) {
+    console.error('Error deleting album:', err.message);
+
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ message: 'Album not found' });
+    }
+
     res.status(500).json({ message: 'Server error' });
   }
 });
