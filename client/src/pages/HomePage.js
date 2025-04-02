@@ -430,8 +430,6 @@ function HomePage() {
                 <option value="title_desc">Title (Z-A)</option>
                 <option value="year_asc">Release Year (Oldest First)</option>
                 <option value="year_desc">Release Year (Newest First)</option>
-                <option value="club_score_desc">Club Score (High-Low)</option>
-                <option value="club_score_asc">Club Score (Low-High)</option>
               </select>
             </div>
             

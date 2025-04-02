@@ -75,12 +75,6 @@ router.get('/', async (req, res) => {
       case 'date_added_asc': // Sort by actual date added (oldest first)
         sortObject = { dateAdded: 1 };
         break;
-      case 'club_score_desc': // <-- New Case
-        sortObject = { clubOriginalScore: -1 };
-        break;
-      case 'club_score_asc': // <-- New Case
-        sortObject = { clubOriginalScore: 1 };
-        break;
       // Default case is already set above (clubEntryNumber ascending)
     }
     
