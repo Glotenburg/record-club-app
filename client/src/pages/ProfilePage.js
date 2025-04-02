@@ -15,7 +15,6 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
-  const [albumToEdit, setAlbumToEdit] = useState(null);
   const [showCustomizeForm, setShowCustomizeForm] = useState(false);
   
   // Check if profile belongs to current user
@@ -41,7 +40,6 @@ const ProfilePage = () => {
       fetchProfileData();
       // Clear form states when changing profiles
       setShowAddForm(false);
-      setAlbumToEdit(null);
       setShowCustomizeForm(false);
     }
   }, [userId]);
@@ -51,16 +49,33 @@ const ProfilePage = () => {
     setShowAddForm(false); // Auto-close form after successful add
   };
 
-  const handleDeleteAlbum = (albumId) => {
-    setPersonalAlbums(prevAlbums => 
-      prevAlbums.filter(album => album._id !== albumId)
+  const handleDeleteAlbum = async (albumId) => {
+    try {
+      // Make API call to delete the album
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/personal-albums/${albumId}`, {
+        headers: { Authorization: `Bearer ${currentUser.token}` } // Assuming token is stored in currentUser
+      });
+      // Update state only after successful deletion
+      setPersonalAlbums(prevAlbums => 
+        prevAlbums.filter(album => album._id !== albumId)
+      );
+    } catch (err) {
+      console.error('Error deleting album:', err);
+      // Optionally set an error state to inform the user
+      setError('Failed to delete album. Please try again.'); 
+    }
+  };
+
+  const handleAlbumUpdated = (updatedAlbum) => {
+    setPersonalAlbums(prevAlbums =>
+      prevAlbums.map(album =>
+        album._id === updatedAlbum._id ? updatedAlbum : album
+      )
     );
   };
 
   const toggleAddForm = () => {
     setShowAddForm(!showAddForm);
-    // Close edit form if open
-    if (albumToEdit) setAlbumToEdit(null);
     // Close customize form if open
     if (showCustomizeForm) setShowCustomizeForm(false);
   };
@@ -69,14 +84,6 @@ const ProfilePage = () => {
     setShowCustomizeForm(!showCustomizeForm);
     // Close add form if open
     if (showAddForm) setShowAddForm(false);
-    // Close edit form if open
-    if (albumToEdit) setAlbumToEdit(null);
-  };
-
-  const startEditingAlbum = (album) => {
-    setAlbumToEdit(album);
-    setShowAddForm(false); // Close add form if open
-    setShowCustomizeForm(false); // Close customize form if open
   };
 
   const handleSettingsUpdated = (updatedSettings) => {
@@ -201,20 +208,10 @@ const ProfilePage = () => {
           
           {isOwnProfile && (
             <div className="flex space-x-3">
-              {albumToEdit && (
-                <button
-                  onClick={() => setAlbumToEdit(null)}
-                  className="px-4 py-2 bg-slate-600 rounded-md font-medium transition-colors hover:bg-slate-500"
-                >
-                  Cancel Edit
-                </button>
-              )}
-              
               <button 
                 onClick={toggleAddForm}
                 className="px-4 py-2 rounded-md font-medium transition-colors hover:opacity-90"
                 style={buttonStyle}
-                disabled={albumToEdit !== null}
               >
                 {showAddForm ? 'Cancel' : 'Add New Album'}
               </button>
@@ -232,28 +229,6 @@ const ProfilePage = () => {
           />
         )}
         
-        {/* Edit Album Form - Only shown to profile owner when editing an album */}
-        {isOwnProfile && albumToEdit && (
-          <div className="bg-opacity-95 bg-slate-700 rounded-lg shadow-lg p-6 mb-6 backdrop-blur-sm">
-            <h3 className="text-xl font-bold mb-4" style={accentStyle}>Edit Album</h3>
-            {/* We could create an EditAlbumForm component in the future or adapt PersonalAlbumForm to handle both cases */}
-            <div className="flex justify-end space-x-3 mt-4">
-              <button
-                onClick={() => setAlbumToEdit(null)}
-                className="px-4 py-2 bg-slate-600 rounded-md font-medium transition-colors hover:bg-slate-500"
-              >
-                Cancel
-              </button>
-              <button
-                className="px-6 py-2 rounded-md font-medium transition-colors hover:opacity-90"
-                style={buttonStyle}
-              >
-                Save Changes
-              </button>
-            </div>
-          </div>
-        )}
-
         {personalAlbums.length === 0 ? (
           <p className="opacity-70 text-center py-8">
             {isOwnProfile 
@@ -268,7 +243,7 @@ const ProfilePage = () => {
                 personalAlbum={album}
                 accentStyle={accentStyle}
                 isOwner={isOwnProfile}
-                onAlbumUpdated={startEditingAlbum}
+                onAlbumUpdated={handleAlbumUpdated}
                 onAlbumDeleted={handleDeleteAlbum}
               />
             ))}
