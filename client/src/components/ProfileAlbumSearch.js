@@ -47,7 +47,7 @@ const ProfileAlbumSearch = ({ buttonStyle, accentStyle, onAlbumAdded, closeSearc
       };
       
       // Make API call to add personal album
-      const response = await axios.post('/api/personal-albums', personalAlbumData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/personal-albums`, personalAlbumData);
       
       // Notify parent component about new album
       if (onAlbumAdded) {
