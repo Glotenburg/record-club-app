@@ -10,6 +10,7 @@ const albumRoutes = require('./routes/albums');
 const spotifyRoutes = require('./routes/spotify');
 const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const personalAlbumRoutes = require('./routes/personalAlbumRoutes');
 
 // Initialize Express app
 const app = express();
@@ -65,7 +66,15 @@ app.get('/api/test', (req, res) => {
 app.use('/api', userRoutes);
 app.use('/api/albums', albumRoutes);
 app.use('/api/spotify', spotifyRoutes);
-app.use('/api', profileRoutes);
+app.use('/api', profileRoutes); // This route includes /api/profiles endpoints
+app.use('/api/personal-albums', personalAlbumRoutes); // Dedicated route for personal albums
+
+// Log all registered routes for debugging
+console.log('Registered routes:');
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
 
 // Start server
 app.listen(PORT, () => {
