@@ -37,6 +37,7 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
     } catch (err) {
       console.error('Error deleting album:', err);
       setDeleteError('Failed to delete album. Please try again.');
+    } finally {
       setIsDeleting(false);
     }
   };
@@ -79,7 +80,7 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
     }
 
     try {
-      const response = await axios.put(`/api/personal-albums/${_id}`, {
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/personal-albums/${_id}`, {
         userRating: ratingValue,
         notes: editedNotes
       });
