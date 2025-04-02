@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 
@@ -15,9 +15,9 @@ function DiscussionPage() {
 
   useEffect(() => {
     fetchThreads();
-  }, [fetchThreads]);
+  }, []);
 
-  const fetchThreads = useCallback(async () => {
+  const fetchThreads = async () => {
     setLoading(true);
     setError(null);
     try {
@@ -29,7 +29,7 @@ function DiscussionPage() {
     } finally {
       setLoading(false);
     }
-  }, [API_BASE_URL]);
+  };
 
   const handleCreateThread = async (e) => {
     e.preventDefault();
