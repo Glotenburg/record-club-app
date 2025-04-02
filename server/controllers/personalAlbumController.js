@@ -13,6 +13,7 @@ const testRoute = (req, res) => {
 // @route   POST /api/personal-albums
 // @access  Private
 const createPersonalAlbum = async (req, res) => {
+  console.log('[DEBUG] Entering createPersonalAlbum controller');
   try {
     const { title, artist, releaseYear, coverArtUrl, userRating, notes } = req.body;
 

@@ -67,7 +67,12 @@ app.use('/api', userRoutes);
 app.use('/api/albums', albumRoutes);
 app.use('/api/spotify', spotifyRoutes);
 app.use('/api', profileRoutes); // This route includes /api/profiles endpoints
-app.use('/api/personal-albums', personalAlbumRoutes); // Dedicated route for personal albums
+
+// Add logging specifically before this route handler
+app.use('/api/personal-albums', (req, res, next) => {
+  console.log(`[DEBUG] Request received for /api/personal-albums path: ${req.method} ${req.originalUrl}`);
+  next(); // Pass control to the actual router
+}, personalAlbumRoutes); // Dedicated route for personal albums
 
 // Log all registered routes for debugging
 console.log('Registered routes:');
