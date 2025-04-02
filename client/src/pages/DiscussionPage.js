@@ -13,10 +13,6 @@ function DiscussionPage() {
 
   const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
 
-  useEffect(() => {
-    fetchThreads();
-  }, [fetchThreads]);
-
   const fetchThreads = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -30,6 +26,10 @@ function DiscussionPage() {
       setLoading(false);
     }
   }, [API_BASE_URL]);
+
+  useEffect(() => {
+    fetchThreads();
+  }, [fetchThreads]);
 
   const handleCreateThread = async (e) => {
     e.preventDefault();
