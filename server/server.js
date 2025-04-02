@@ -11,6 +11,7 @@ const spotifyRoutes = require('./routes/spotify');
 const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const personalAlbumRoutes = require('./routes/personalAlbumRoutes');
+const discussionRoutes = require('./routes/discussionRoutes');
 
 // Initialize Express app
 const app = express();
@@ -73,6 +74,8 @@ app.use('/api/personal-albums', (req, res, next) => {
   console.log(`[DEBUG] Request received for /api/personal-albums path: ${req.method} ${req.originalUrl}`);
   next(); // Pass control to the actual router
 }, personalAlbumRoutes); // Dedicated route for personal albums
+
+app.use('/api/discussions', discussionRoutes); // Use discussion routes
 
 // Log all registered routes for debugging
 console.log('Registered routes:');

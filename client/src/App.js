@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AdminPage from './pages/AdminPage';
 import ProfilePage from './pages/ProfilePage';
+import DiscussionPage from './pages/DiscussionPage';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import { AuthContext } from './context/AuthContext';
@@ -71,6 +72,11 @@ function App() {
                       </Link>
                     </li>
                   )}
+                  <li>
+                    <Link to="/discussion" className="text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium">
+                      Discussion
+                    </Link>
+                  </li>
                   {user && user.role === 'admin' && (
                     <li>
                       <Link to="/admin" className="text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium">
@@ -123,6 +129,11 @@ function App() {
                       </Link>
                     </li>
                   )}
+                  <li>
+                    <Link to="/discussion" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium py-2">
+                      Discussion
+                    </Link>
+                  </li>
                   {user && user.role === 'admin' && (
                     <li>
                       <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium py-2">
@@ -155,6 +166,7 @@ function App() {
           {/* Protected Routes */}
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/discussion" element={<DiscussionPage />} />
             {/* Add more protected routes here as needed */}
           </Route>
 

@@ -109,35 +109,45 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
         </div>
       )}
       
-      <div className="relative">
-        {userRating !== null && userRating !== undefined && (
-          <div
-            className="absolute top-2 right-2 bg-black bg-opacity-70 rounded-full px-2 py-1 text-sm font-bold flex items-center z-10"
-            style={{color: accentStyle.color || '#f6ad55'}}
-            title={`Rating: ${userRating.toFixed(1)}/10`}
-          >
-            {userRating.toFixed(1)} ★
-          </div>
-        )}
-        {coverArtUrl ? (
-          <img 
-            src={coverArtUrl} 
-            alt={`${title} by ${artist}`} 
-            className="w-full h-48 object-cover cursor-pointer"
-            onClick={toggleExpanded}
-          />
-        ) : (
-          <div className="w-full h-48 bg-slate-600 flex items-center justify-center cursor-pointer" onClick={toggleExpanded}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 opacity-40" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
-            </svg>
-          </div>
-        )}
+      <div 
+        className="cursor-pointer" 
+        onClick={toggleExpanded}
+      >
+        <div className="relative">
+          {userRating !== null && userRating !== undefined && (
+            <div
+              className="absolute top-2 right-2 bg-black bg-opacity-70 rounded-full px-2 py-1 text-sm font-bold flex items-center z-10"
+              style={{color: accentStyle.color || '#f6ad55'}}
+              title={`Rating: ${userRating.toFixed(1)}/10`}
+            >
+              {userRating.toFixed(1)} ★
+            </div>
+          )}
+          {coverArtUrl ? (
+            <img 
+              src={coverArtUrl} 
+              alt={`${title} by ${artist}`} 
+              className="w-full h-48 object-cover"
+            />
+          ) : (
+            <div className="w-full h-48 bg-slate-600 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 opacity-40" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
+              </svg>
+            </div>
+          )}
+        </div>
+        
+        <div className="p-4">
+            <h3 className="font-bold text-lg mb-1" style={accentStyle}>{title}</h3>
+            <p className="mb-1">{artist}</p>
+            {releaseYear && <p className="opacity-70 text-sm mb-2">({releaseYear})</p>}
+        </div>
       </div>
       
-      <div className="p-4 flex-grow flex flex-col">
-        {isEditing ? (
-          <div className="mb-4 space-y-3 animate-fadeIn">
+      <div className="px-4 pb-4 flex-grow flex flex-col">
+        {isEditing && (
+          <div className="mb-4 space-y-3 animate-fadeIn border-t border-slate-600 pt-4">
             {editError && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-3 py-2 text-sm rounded" role="alert">
                 {editError}
@@ -185,61 +195,54 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
                </button>
              </div>
           </div>
-        ) : (
-          <>
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="font-bold text-lg mb-1" style={accentStyle}>{title}</h3>
-                <p className="mb-1">{artist}</p>
-                {releaseYear && <p className="opacity-70 text-sm mb-2">({releaseYear})</p>}
+        )}
+        
+        {isExpanded && !isEditing && (
+          <div className="mt-4 pt-4 border-t border-slate-600 animate-fadeIn flex-grow flex flex-col">
+            {notes && (
+              <div className="mb-4">
+                <h4 className="text-sm font-medium opacity-80 mb-1">Notes:</h4>
+                <p className="text-sm italic opacity-80">{notes}</p>
               </div>
-              <button
-                onClick={toggleExpanded}
-                className="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-600 rounded-md transition-colors self-start"
-                aria-expanded={isExpanded}
-              >
-                {isExpanded ? 'Hide Comments' : 'Comments'}
-              </button>
-            </div>
-
-            {isExpanded && (
-              <div className="mt-4 pt-3 border-t border-slate-600 animate-fadeIn">
-                {notes && (
-                  <div className="mb-4">
-                    <h4 className="text-sm font-medium opacity-80 mb-1">Notes:</h4>
-                    <p className="text-sm italic opacity-80">{notes}</p>
-                  </div>
-                )}
-                
+            )}
+            
+            <div className="flex-grow">
                 <PersonalCommentSection 
                   personalAlbumId={_id}
                   buttonStyle={buttonStyle}
                   accentStyle={accentStyle}
                 />
-              </div>
-            )}
-          </>
-        )}
-        
-        <div className="mt-auto">
-          {isOwner && !isEditing && (
-            <div className="flex justify-end space-x-2 mt-4">
-              <button
-                onClick={handleStartEdit}
-                className="text-xs px-3 py-1.5 bg-slate-600 hover:bg-slate-500 rounded-md transition-colors"
-              >
-                Info
-              </button>
-              <button
-                onClick={handleDelete}
-                disabled={isDeleting}
-                className="text-xs px-3 py-1.5 bg-red-700 hover:bg-red-600 rounded-md disabled:opacity-50 transition-colors"
-              >
-                {isDeleting ? 'Deleting...' : 'Delete'}
-              </button>
             </div>
-          )}
-        </div>
+
+            {isOwner && (
+                <div className="flex justify-end space-x-2 mt-4 pt-2 border-t border-slate-600">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); handleStartEdit(); }}
+                    className="text-xs px-3 py-1.5 bg-slate-600 hover:bg-slate-500 rounded-md transition-colors"
+                  >
+                    Edit Info
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); handleDelete(); }}
+                    disabled={isDeleting}
+                    className="text-xs px-3 py-1.5 bg-red-700 hover:bg-red-600 rounded-md disabled:opacity-50 transition-colors"
+                  >
+                    {isDeleting ? 'Deleting...' : 'Delete'}
+                  </button>
+                </div>
+            )}
+          </div>
+        )}
+
+        {!isEditing && (
+            <button
+                onClick={(e) => { e.stopPropagation(); toggleExpanded(); }}
+                className="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-600 rounded-md transition-colors mt-auto"
+                aria-expanded={isExpanded}
+            >
+                {isExpanded ? 'Hide Details' : 'Show Details'}
+            </button>
+        )}
       </div>
     </div>
   );
