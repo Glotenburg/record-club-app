@@ -30,7 +30,7 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
     setDeleteError(null);
 
     try {
-      await axios.delete(`/api/personal-albums/${_id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/personal-albums/${_id}`);
       if (onAlbumDeleted) {
         onAlbumDeleted(_id);
       }
@@ -65,12 +65,17 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
     setEditLoading(true);
     setEditError(null);
 
-    const ratingValue = editedRating === '' ? null : Number(editedRating);
-
-    if (ratingValue !== null && (ratingValue < 0 || ratingValue > 10)) {
+    let ratingValue = null;
+    if (editedRating !== '' && editedRating !== null) {
+      ratingValue = Number(editedRating);
+      // Validate range
+      if (isNaN(ratingValue) || ratingValue < 0 || ratingValue > 10) {
         setEditError('Rating must be between 0 and 10.');
         setEditLoading(false);
         return;
+      }
+      // Optionally round to one decimal place before saving, although backend Number type handles it
+      // ratingValue = parseFloat(ratingValue.toFixed(1)); 
     }
 
     try {
@@ -104,6 +109,15 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
       )}
       
       <div className="relative">
+        {userRating !== null && userRating !== undefined && (
+          <div
+            className="absolute top-2 right-2 bg-black bg-opacity-70 rounded-full px-2 py-1 text-sm font-bold flex items-center z-10"
+            style={{color: accentStyle.color || '#f6ad55'}}
+            title={`Rating: ${userRating.toFixed(1)}/10`}
+          >
+            {userRating.toFixed(1)} ★
+          </div>
+        )}
         {coverArtUrl ? (
           <img 
             src={coverArtUrl} 
@@ -116,14 +130,6 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
             <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 opacity-40" viewBox="0 0 20 20" fill="currentColor">
               <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
             </svg>
-          </div>
-        )}
-        {userRating && (
-          <div 
-            className="absolute top-2 right-2 bg-black bg-opacity-70 rounded-full px-2 py-1 text-sm font-bold flex items-center"
-            style={{color: accentStyle.color || '#f6ad55'}}
-          >
-            {userRating}/10
           </div>
         )}
       </div>
@@ -143,7 +149,7 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
                 id={`rating-${_id}`}
                 min="0"
                 max="10"
-                step="1"
+                step="0.1"
                 value={editedRating}
                 onChange={(e) => setEditedRating(e.target.value)}
                 className="w-full px-2 py-1 bg-slate-800 border border-slate-600 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-opacity-50"
@@ -188,18 +194,10 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
               </div>
               <button
                 onClick={toggleExpanded}
-                className="flex items-center justify-center w-7 h-7 rounded-full bg-slate-800 hover:bg-slate-600 transition-colors"
-                aria-label={isExpanded ? "Hide details" : "Show details"}
+                className="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-600 rounded-md transition-colors self-start"
+                aria-expanded={isExpanded}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-4 w-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                {isExpanded ? 'Hide Comments' : 'Comments'}
               </button>
             </div>
 
@@ -229,7 +227,7 @@ const PersonalAlbumDisplay = ({ personalAlbum, accentStyle, isOwner, onAlbumUpda
                 onClick={handleStartEdit}
                 className="text-xs px-3 py-1.5 bg-slate-600 hover:bg-slate-500 rounded-md transition-colors"
               >
-                Edit
+                Info
               </button>
               <button
                 onClick={handleDelete}

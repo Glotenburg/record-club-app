@@ -13,7 +13,7 @@ const PersonalCommentSection = ({ personalAlbumId, buttonStyle, accentStyle }) =
   const fetchComments = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/personal-albums/${personalAlbumId}/comments`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/personal-albums/${personalAlbumId}/comments`);
       setComments(response.data);
       setError(null);
     } catch (err) {
