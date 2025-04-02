@@ -24,7 +24,7 @@ const ProfilePage = () => {
     const fetchProfileData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/profiles/${userId}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/profiles/${userId}`);
         setProfileData(response.data.user);
         setPersonalAlbums(response.data.personalAlbums);
         setError(null);
