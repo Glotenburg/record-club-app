@@ -8,7 +8,7 @@ const cors = require('cors');
 // Routes
 const albumRoutes = require('./routes/albums');
 const spotifyRoutes = require('./routes/spotify');
-const userRoutes = require('./routes/users');
+const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 
 // Initialize Express app
@@ -62,7 +62,7 @@ app.get('/api/test', (req, res) => {
 });
 
 // Use Routes
-app.use('/api/users', userRoutes);
+app.use('/api', userRoutes);
 app.use('/api/albums', albumRoutes);
 app.use('/api/spotify', spotifyRoutes);
 app.use('/api', profileRoutes);

@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import PersonalAlbumDisplay from '../components/PersonalAlbumDisplay';
-import PersonalAlbumForm from '../components/PersonalAlbumForm';
+import ProfileAlbumSearch from '../components/ProfileAlbumSearch';
 import ProfileCustomizationForm from '../components/ProfileCustomizationForm';
+import UserActivitySection from '../components/UserActivitySection';
 import axios from 'axios';
 
 const ProfilePage = () => {
@@ -185,6 +186,13 @@ const ProfilePage = () => {
           onCancel={toggleCustomizeForm}
         />
       )}
+      
+      {/* User Activity Section (Favorites and Ratings) */}
+      <UserActivitySection 
+        userId={userId}
+        accentStyle={accentStyle}
+        buttonStyle={buttonStyle}
+      />
 
       {/* Personal Albums Section */}
       <div className="bg-opacity-90 bg-slate-800 rounded-lg shadow-md p-6 backdrop-blur-sm">
@@ -214,13 +222,13 @@ const ProfilePage = () => {
           )}
         </div>
 
-        {/* Album Form - Only shown to profile owner when Add button is clicked */}
+        {/* Album Search Form - Only shown to profile owner when Add button is clicked */}
         {isOwnProfile && showAddForm && (
-          <PersonalAlbumForm 
+          <ProfileAlbumSearch 
             onAlbumAdded={handleAddAlbum} 
             buttonStyle={buttonStyle} 
             accentStyle={accentStyle}
-            closeForm={() => setShowAddForm(false)}
+            closeSearch={() => setShowAddForm(false)}
           />
         )}
         

@@ -121,20 +121,17 @@ const PersonalAlbumForm = ({ onAlbumAdded, buttonStyle, accentStyle, closeForm }
             
             <label className="block opacity-90 font-medium">
               Rating (0-10)
-              <select
+              <input
+                type="number"
                 name="userRating"
                 value={formData.userRating}
                 onChange={handleChange}
+                min="0"
+                max="10"
+                step="0.1"
+                placeholder="0.0-10.0"
                 className="w-full mt-1 px-3 py-2 bg-slate-800 border border-slate-600 rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50"
-              >
-                <option value="">Select a rating</option>
-                {[...Array(11).keys()].map(num => (
-                  <option key={num} value={num}>{num}</option>
-                ))}
-                {[0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5].map(num => (
-                  <option key={num} value={num}>{num}</option>
-                ))}
-              </select>
+              />
             </label>
           </div>
           
