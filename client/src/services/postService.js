@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-// Ensure the base URL ends without a slash, and we add /api later
-const BASE_API_URL = (process.env.REACT_APP_API_URL || 'http://localhost:5001').replace(/\/$/, '');
-const API_URL = `${BASE_API_URL}/api`; // Append /api here
+// Remove the explicit API_URL construction. 
+// Requests will use relative paths, relying on the CRA proxy for development
+// and Netlify redirects/proxy for production.
+// const BASE_API_URL = (process.env.REACT_APP_API_URL || 'http://localhost:5001').replace(/\/$/, '');
+// const API_URL = `${BASE_API_URL}/api`; 
 
 // Helper function to get the auth token from localStorage
 const getAuthHeaders = () => {
@@ -16,7 +18,7 @@ const getAuthHeaders = () => {
 // Fetch all posts
 export const getPosts = async () => {
   try {
-    const response = await axios.get(`${API_URL}/posts`);
+    const response = await axios.get('/api/posts'); // Use relative path
     return response.data;
   } catch (error) {
     console.error('Error fetching posts:', error.response ? error.response.data : error.message);
@@ -27,7 +29,7 @@ export const getPosts = async () => {
 // Fetch a single post by ID
 export const getPostById = async (postId) => {
   try {
-    const response = await axios.get(`${API_URL}/posts/${postId}`);
+    const response = await axios.get(`/api/posts/${postId}`); // Use relative path
     return response.data;
   } catch (error) {
     console.error(`Error fetching post ${postId}:`, error.response ? error.response.data : error.message);
@@ -38,7 +40,7 @@ export const getPostById = async (postId) => {
 // Create a new post
 export const createPost = async (postData) => {
   try {
-    const response = await axios.post(`${API_URL}/posts`, postData, {
+    const response = await axios.post('/api/posts', postData, { // Use relative path
       headers: getAuthHeaders(),
     });
     return response.data;
@@ -51,7 +53,7 @@ export const createPost = async (postData) => {
 // Update a post
 export const updatePost = async (postId, postData) => {
   try {
-    const response = await axios.put(`${API_URL}/posts/${postId}`, postData, {
+    const response = await axios.put(`/api/posts/${postId}`, postData, { // Use relative path
       headers: getAuthHeaders(),
     });
     return response.data;
@@ -64,7 +66,7 @@ export const updatePost = async (postId, postData) => {
 // Delete a post
 export const deletePost = async (postId) => {
   try {
-    const response = await axios.delete(`${API_URL}/posts/${postId}`, {
+    const response = await axios.delete(`/api/posts/${postId}`, { // Use relative path
       headers: getAuthHeaders(),
     });
     return response.data;
