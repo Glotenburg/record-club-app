@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+// Ensure the base URL ends without a slash, and we add /api later
+const BASE_API_URL = (process.env.REACT_APP_API_URL || 'http://localhost:5001').replace(/\/$/, '');
+const API_URL = `${BASE_API_URL}/api`; // Append /api here
 
 // Helper function to get the auth token from localStorage
 const getAuthHeaders = () => {
