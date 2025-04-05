@@ -11,6 +11,7 @@ const spotifyRoutes = require('./routes/spotify');
 const userRoutes = require('./routes/userRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const personalAlbumRoutes = require('./routes/personalAlbumRoutes');
+const postRoutes = require('./routes/postRoutes');
 
 // Initialize Express app
 const app = express();
@@ -67,6 +68,7 @@ app.use('/api', userRoutes);
 app.use('/api/albums', albumRoutes);
 app.use('/api/spotify', spotifyRoutes);
 app.use('/api', profileRoutes); // This route includes /api/profiles endpoints
+app.use('/api/posts', postRoutes);
 
 // Add logging specifically before this route handler
 app.use('/api/personal-albums', (req, res, next) => {

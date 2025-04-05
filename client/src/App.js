@@ -8,6 +8,9 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AdminPage from './pages/AdminPage';
 import ProfilePage from './pages/ProfilePage';
+import DeepDivePage from './pages/DeepDivePage';
+import SinglePostPage from './pages/SinglePostPage';
+import PostFormPage from './pages/PostFormPage';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import { AuthContext } from './context/AuthContext';
@@ -46,6 +49,11 @@ function App() {
               <li>
                 <Link to="/" className="text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium">
                   Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/deep-dive" className="text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium">
+                  Deep Dive
                 </Link>
               </li>
               {!isAuthenticated ? (
@@ -100,6 +108,11 @@ function App() {
                   Home
                 </Link>
               </li>
+              <li>
+                <Link to="/deep-dive" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium py-2">
+                  Deep Dive
+                </Link>
+              </li>
               {!isAuthenticated ? (
                 <>
                   <li>
@@ -151,10 +164,14 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile/:userId" element={<ProfilePage />} />
+          <Route path="/deep-dive" element={<DeepDivePage />} />
+          <Route path="/deep-dive/:postId" element={<SinglePostPage />} />
 
           {/* Protected Routes */}
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/deep-dive/new" element={<PostFormPage />} />
+            <Route path="/deep-dive/edit/:postId" element={<PostFormPage />} />
             {/* Add more protected routes here as needed */}
           </Route>
 
