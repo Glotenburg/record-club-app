@@ -83,7 +83,7 @@ router.post('/users/register', async (req, res) => {
         backgroundColor: '#1a202c',
         textColor: '#e2e8f0',
         accentColor: '#f6ad55',
-        layoutStyle: 'standard'
+        layoutStyle: 'default'
       }
     });
 
