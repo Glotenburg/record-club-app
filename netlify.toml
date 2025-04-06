@@ -9,7 +9,7 @@
 # Proxy rule to forward API requests to your live backend
 [[redirects]]
   from = "/api/*"                             # Match any request starting with /api/
-  to = "https://record-club-app.onrender.com/:splat"        # Forward to your Render backend URL
+  to = "https://record-club-app.onrender.com/api/:splat"   # Forward to your Render backend URL, maintaining /api prefix
   status = 200                                # Use 200 status for API proxying
   force = true                                # Ensure this rule is applied even if file exists
 
