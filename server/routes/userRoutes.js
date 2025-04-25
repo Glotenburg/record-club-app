@@ -206,4 +206,38 @@ router.post('/users/login', async (req, res) => {
   }
 });
 
+// @route   DELETE /api/users/:userId
+// @desc    Delete a user (admin only)
+// @access  Private/Admin
+router.delete('/users/:userId', protect, admin, async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    
+    // Check if userId is valid
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: 'Invalid user ID' });
+    }
+    
+    // Find user by ID
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    // Prevent admins from deleting themselves
+    if (user._id.toString() === req.user._id.toString()) {
+      return res.status(400).json({ message: 'Admin cannot delete their own account' });
+    }
+    
+    // Delete the user
+    await User.findByIdAndDelete(userId);
+    
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router; 

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import AlbumManagement from '../components/AlbumManagement';
+import UserManagement from '../components/UserManagement';
 
 const AdminPage = () => {
   const { user } = useContext(AuthContext);
@@ -27,7 +28,7 @@ const AdminPage = () => {
           </button>
           
           {activeSection === 'albums' && <AlbumManagement />}
-          {activeSection === 'users' && <p className="text-gray-300">User management coming soon...</p>}
+          {activeSection === 'users' && <UserManagement />}
         </>
       ) : (
         <div className="grid gap-6 md:grid-cols-2">

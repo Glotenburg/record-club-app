@@ -34,6 +34,8 @@ function HomePage() {
   // Add state for registered users instead of active users
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
+  // Add state for expandable users section
+  const [isUsersExpanded, setIsUsersExpanded] = useState(false);
 
   // Get auth context
   const { logout, isAuthenticated, user } = useContext(AuthContext);
@@ -339,25 +341,59 @@ function HomePage() {
       {/* Registered Users Section */}
       {!loadingUsers && registeredUsers.length > 0 && (
         <div className="bg-slate-800 bg-opacity-80 rounded-lg shadow-lg p-5 mb-8">
-          <h2 className="text-xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-500">
-            Registered Users
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {registeredUsers.map(user => (
-              <Link 
-                key={user._id} 
-                to={`/profile/${user._id}`}
-                className="flex flex-col items-center text-center transition-all hover:transform hover:scale-105 p-3 rounded-lg hover:bg-slate-700 border border-slate-700"
-              >
-                <div className="w-16 h-16 rounded-full bg-gradient-to-r from-amber-500 to-purple-600 flex items-center justify-center text-xl font-bold text-slate-900 mb-2 shadow-md">
-                  {user.username.charAt(0).toUpperCase()}
-                </div>
-                <span className="text-gray-200 text-sm font-medium">{user.username}</span>
-                <span className="text-xs text-amber-400 mt-1">{user.activity} {user.activity === 1 ? 'contribution' : 'contributions'}</span>
-                <span className="text-xs text-gray-400 mt-1">Joined {new Date(user.dateRegistered).toLocaleDateString()}</span>
-              </Link>
-            ))}
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-500">
+              Registered Users
+            </h2>
+            <button 
+              onClick={() => setIsUsersExpanded(!isUsersExpanded)}
+              className="text-amber-400 hover:text-amber-300 transition-colors"
+            >
+              {isUsersExpanded ? 'Show Less' : 'Show All'}
+            </button>
           </div>
+          
+          {isUsersExpanded ? (
+            /* Full expanded view */
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {registeredUsers.map(user => (
+                <Link 
+                  key={user._id} 
+                  to={`/profile/${user._id}`}
+                  className="flex flex-col items-center text-center transition-all hover:transform hover:scale-105 p-3 rounded-lg hover:bg-slate-700 border border-slate-700"
+                >
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-amber-500 to-purple-600 flex items-center justify-center text-xl font-bold text-slate-900 mb-2 shadow-md">
+                    {user.username.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="text-gray-200 text-sm font-medium">{user.username}</span>
+                  <span className="text-xs text-amber-400 mt-1">{user.activity} {user.activity === 1 ? 'contribution' : 'contributions'}</span>
+                  <span className="text-xs text-gray-400 mt-1">Joined {new Date(user.dateRegistered).toLocaleDateString()}</span>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            /* Collapsed preview view - only show top 5 users */
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
+              {registeredUsers.slice(0, 5).map(user => (
+                <Link 
+                  key={user._id} 
+                  to={`/profile/${user._id}`}
+                  className="flex flex-col items-center text-center transition-all hover:transform hover:scale-105 p-3 rounded-lg hover:bg-slate-700 border border-slate-700"
+                >
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-amber-500 to-purple-600 flex items-center justify-center text-xl font-bold text-slate-900 mb-2 shadow-md">
+                    {user.username.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="text-gray-200 text-sm font-medium">{user.username}</span>
+                  <span className="text-xs text-amber-400 mt-1">{user.activity} {user.activity === 1 ? 'contribution' : 'contributions'}</span>
+                </Link>
+              ))}
+            </div>
+          )}
+          {!isUsersExpanded && registeredUsers.length > 5 && (
+            <div className="text-center mt-4 text-sm text-gray-400">
+              <span>{registeredUsers.length - 5} more registered users</span>
+            </div>
+          )}
         </div>
       )}
       
