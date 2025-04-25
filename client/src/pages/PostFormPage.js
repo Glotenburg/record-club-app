@@ -1,26 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import ReactQuill from 'react-quill-new'; // Import new React Quill package
-import 'react-quill-new/dist/quill.snow.css'; // Import new Quill styles
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { createPost, getPostById, updatePost } from '../services/postService';
 import { AuthContext } from '../context/AuthContext';
-
-// Define Quill modules and formats if needed (customize toolbar, etc.)
-const quillModules = {
-  toolbar: [
-    [{ 'header': [1, 2, 3, false] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block'],
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'indent': '-1'}, { 'indent': '+1' }],
-    ['link', 'image', 'video'], // Allow links, images, and videos
-    ['clean'] // Remove formatting button
-  ],
-};
-
-const quillFormats = [
-  'header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block',
-  'list', 'bullet', 'indent',
-  'link', 'image', 'video'
-];
 
 function PostFormPage() {
   const { postId } = useParams(); // Get postId from URL if editing
@@ -28,7 +11,7 @@ function PostFormPage() {
   const { user, isAuthenticated } = useContext(AuthContext); // Need user for authorization check
 
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState(''); // State for Quill editor content
+  const [content, setContent] = useState(''); // State for editor content
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -125,16 +108,23 @@ function PostFormPage() {
           <label htmlFor="content" className="block text-sm font-medium text-gray-300 mb-1">
             Content
           </label>
-          {/* React Quill Editor */}
-          <div className="bg-slate-700 rounded-md text-gray-100 quill-container"> {/* Custom class for potential styling overrides */}
-            <ReactQuill 
-              theme="snow" 
-              value={content}
-              onChange={setContent} 
-              modules={quillModules}
-              formats={quillFormats}
-              placeholder="Write your deep dive here... Embed links, videos, and images!"
-              className="h-60 mb-10" // Adjust height as needed, mb adds space below if button follows directly
+          {/* CKEditor for better table support */}
+          <div className="bg-slate-700 rounded-md overflow-hidden">
+            <CKEditor
+              editor={ClassicEditor}
+              data={content}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                setContent(data);
+              }}
+              config={{
+                placeholder: "Write your deep dive here... Tables and formatting from Google Docs will work here!",
+                // Custom CKEditor config can go here
+                // This adds better table support
+                table: {
+                  contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+                },
+              }}
             />
           </div>
         </div>

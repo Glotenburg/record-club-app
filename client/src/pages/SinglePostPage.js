@@ -102,7 +102,7 @@ function SinglePostPage() {
         
         {/* Render sanitized content */}
         <div 
-            className="prose prose-invert max-w-none text-gray-300 prose-headings:text-amber-400 prose-a:text-amber-500 hover:prose-a:text-amber-400 prose-strong:text-gray-100 prose-blockquote:border-l-amber-500 prose-code:text-pink-400 prose-pre:bg-slate-900"
+            className="prose prose-invert max-w-none text-gray-300 prose-headings:text-amber-400 prose-a:text-amber-500 hover:prose-a:text-amber-400 prose-strong:text-gray-100 prose-blockquote:border-l-amber-500 prose-code:text-pink-400 prose-pre:bg-slate-900 prose-table:border-collapse prose-table:w-full prose-td:border prose-td:border-slate-700 prose-td:p-2 prose-th:bg-slate-800 prose-th:border prose-th:border-slate-700 prose-th:p-2"
             dangerouslySetInnerHTML={createMarkup(post.content)}
         />
 
