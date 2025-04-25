@@ -7,6 +7,57 @@ const User = require('../models/User');
 const Album = require('../models/Album');
 const { protect, admin } = require('../middleware/authMiddleware');
 
+// @route   GET /api/users
+// @desc    Get all registered users with activity counts
+// @access  Public
+router.get('/users', async (req, res) => {
+  try {
+    // Find all users, excluding sensitive data
+    const users = await User.find()
+      .select('_id username dateRegistered')
+      .sort('-dateRegistered');
+
+    // Get all users' activity (ratings and comments)
+    const usersWithActivity = await Promise.all(
+      users.map(async (user) => {
+        // Count ratings
+        const albumsRated = await Album.countDocuments({
+          'scores.userId': user._id
+        });
+
+        // Count comments - use the Comment model instead of Album model for comments
+        const Comment = mongoose.model('Comment');
+        const commentsCount = await Comment.countDocuments({
+          userId: user._id
+        });
+
+        // Count favorites
+        const albumsFavorited = await Album.countDocuments({
+          favoritedBy: user._id
+        });
+
+        // Sum the activities
+        const totalContributions = albumsRated + commentsCount + albumsFavorited;
+
+        return {
+          _id: user._id,
+          username: user.username,
+          dateRegistered: user.dateRegistered,
+          activity: totalContributions
+        };
+      })
+    );
+
+    // Sort by activity (most active first)
+    usersWithActivity.sort((a, b) => b.activity - a.activity);
+
+    res.json(usersWithActivity);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // @route   GET /api/users/:userId/activity
 // @desc    Get user's activity (favorites and ratings) 
 // @access  Public
