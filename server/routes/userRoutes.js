@@ -5,12 +5,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Album = require('../models/Album');
-const { protect, admin } = require('../middleware/authMiddleware');
+const { protect, isAdmin } = require('../middleware/authMiddleware');
 
 // @route   GET /api/users
 // @desc    Get all registered users with activity counts
 // @access  Public
-router.get('/users', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     // Find all users, excluding sensitive data
     const users = await User.find()
@@ -61,7 +61,7 @@ router.get('/users', async (req, res) => {
 // @route   GET /api/users/:userId/activity
 // @desc    Get user's activity (favorites and ratings) 
 // @access  Public
-router.get('/users/:userId/activity', async (req, res) => {
+router.get('/:userId/activity', async (req, res) => {
   try {
     const userId = req.params.userId;
     
@@ -112,7 +112,7 @@ router.get('/users/:userId/activity', async (req, res) => {
 // @route   POST /api/users/register
 // @desc    Register a new user
 // @access  Public
-router.post('/users/register', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -155,7 +155,7 @@ router.post('/users/register', async (req, res) => {
 // @route   POST /api/users/login
 // @desc    Authenticate user & get token
 // @access  Public
-router.post('/users/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -209,12 +209,14 @@ router.post('/users/login', async (req, res) => {
 // @route   DELETE /api/users/:userId
 // @desc    Delete a user (admin only)
 // @access  Private/Admin
-router.delete('/users/:userId', protect, admin, async (req, res) => {
+router.delete('/:userId', protect, isAdmin, async (req, res) => {
+  console.log(`[DELETE USER] Request received to delete user with ID: ${req.params.userId}`);
   try {
     const userId = req.params.userId;
     
     // Check if userId is valid
     if (!mongoose.Types.ObjectId.isValid(userId)) {
+      console.log(`[DELETE USER] Invalid user ID format: ${userId}`);
       return res.status(400).json({ message: 'Invalid user ID' });
     }
     
@@ -222,20 +224,23 @@ router.delete('/users/:userId', protect, admin, async (req, res) => {
     const user = await User.findById(userId);
     
     if (!user) {
+      console.log(`[DELETE USER] User not found with ID: ${userId}`);
       return res.status(404).json({ message: 'User not found' });
     }
     
     // Prevent admins from deleting themselves
     if (user._id.toString() === req.user._id.toString()) {
+      console.log(`[DELETE USER] Admin attempted to delete their own account: ${userId}`);
       return res.status(400).json({ message: 'Admin cannot delete their own account' });
     }
     
     // Delete the user
     await User.findByIdAndDelete(userId);
+    console.log(`[DELETE USER] Successfully deleted user: ${userId}, username: ${user.username}`);
     
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
-    console.error('Error deleting user:', error);
+    console.error('[DELETE USER] Error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });

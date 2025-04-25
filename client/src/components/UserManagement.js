@@ -54,11 +54,17 @@ const UserManagement = () => {
   const handleConfirmDelete = async () => {
     if (!deletingId) return;
     
+    console.log(`Attempting to delete user with ID: ${deletingId}`);
+    
     try {
-      await axios.delete(
+      console.log(`Sending DELETE request to: ${process.env.REACT_APP_API_URL}/api/users/${deletingId}`);
+      
+      const response = await axios.delete(
         `${process.env.REACT_APP_API_URL}/api/users/${deletingId}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
+      
+      console.log('Delete user response:', response.data);
 
       // Update local state
       setUsers(prevUsers => prevUsers.filter(user => user._id !== deletingId));
@@ -67,6 +73,14 @@ const UserManagement = () => {
       setTimeout(() => setSuccessMessage(null), 3000);
     } catch (err) {
       console.error('Error deleting user:', err);
+      console.error('Error details:', {
+        status: err.response?.status,
+        statusText: err.response?.statusText,
+        data: err.response?.data,
+        headers: err.response?.headers,
+        config: err.config
+      });
+      
       setError(`Failed to delete user: ${err.response?.data?.message || err.message}`);
       setTimeout(() => setError(null), 5000);
     } finally {

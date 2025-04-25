@@ -9,7 +9,7 @@ const {
 } = require('../controllers/postController');
 
 // Import authentication middleware
-const { protect, admin } = require('../middleware/authMiddleware'); // Assuming admin middleware exists or will be added
+const { protect, isAdmin } = require('../middleware/authMiddleware'); // Updated to use isAdmin
 
 // Public routes
 router.get('/', getPosts);          // Get all posts

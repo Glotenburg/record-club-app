@@ -64,7 +64,7 @@ app.get('/api/test', (req, res) => {
 });
 
 // Use Routes
-app.use('/api', userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/albums', albumRoutes);
 app.use('/api/spotify', spotifyRoutes);
 app.use('/api', profileRoutes); // This route includes /api/profiles endpoints
