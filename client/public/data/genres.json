@@ -394,5 +394,191 @@
     "locationName": "Central Thailand",
     "coordinates": [13.7563, 100.5018],
     "countryCode": "TH"
+  },
+  {
+    "genreNames": ["Ethio-jazz"],
+    "locationName": "Addis Ababa, Ethiopia",
+    "coordinates": [9.02497, 38.74689],
+    "countryCode": "ET"
+  },
+  {
+    "genreNames": ["Swedish Folk Music (Spelmansmusik)"],
+    "locationName": "Dalarna, Sweden",
+    "coordinates": [60.8750, 14.9042],
+    "countryCode": "SE"
+  },
+  {
+    "genreNames": ["Dansband"],
+    "locationName": "Malung, Sweden",
+    "coordinates": [60.6889, 13.7207],
+    "countryCode": "SE"
+  },
+  {
+    "genreNames": ["Trallpunk"],
+    "locationName": "Stockholm, Sweden",
+    "coordinates": [59.3293, 18.0686],
+    "countryCode": "SE"
+  },
+  {
+    "genreNames": ["Gothenburg Sound (Melodic Death Metal)"],
+    "locationName": "Gothenburg, Sweden",
+    "coordinates": [57.7089, 11.9746],
+    "countryCode": "SE"
+  },
+  {
+    "genreNames": ["Swedish Indie Pop"],
+    "locationName": "Umeå, Sweden",
+    "coordinates": [63.8258, 20.2630],
+    "countryCode": "SE"
+  },
+  {
+    "genreNames": ["EPA-dunk"],
+    "locationName": "Vetlanda, Sweden",
+    "coordinates": [57.4278, 15.0844],
+    "countryCode": "SE"
+  },
+  {
+    "genreNames": ["Könsrock"],
+    "locationName": "Tidaholm, Sweden",
+    "coordinates": [58.1810, 13.9573],
+    "countryCode": "SE"
+  },
+  {
+    "genreNames": ["Joik (Sami Chant)"],
+    "locationName": "Sápmi (Northern Scandinavia)",
+    "coordinates": [69.0000, 24.0000],
+    "countryCode": "SE" 
+  },
+  {
+    "genreNames": ["Mbalax"],
+    "locationName": "Dakar, Senegal",
+    "coordinates": [14.7167, -17.4677],
+    "countryCode": "SN"
+  },
+  {
+    "genreNames": ["Chimurenga"],
+    "locationName": "Harare, Zimbabwe",
+    "coordinates": [-17.8252, 31.0335],
+    "countryCode": "ZW"
+  },
+  {
+    "genreNames": ["Andean Folk (Huayno)"],
+    "locationName": "Cusco, Peru",
+    "coordinates": [-13.5320, -71.9675],
+    "countryCode": "PE"
+  },
+  {
+    "genreNames": ["Nueva Canción Chilena"],
+    "locationName": "Santiago, Chile",
+    "coordinates": [-33.4489, -70.6693],
+    "countryCode": "CL"
+  },
+  {
+    "genreNames": ["Humppa"],
+    "locationName": "Lahti, Finland",
+    "coordinates": [60.9827, 25.6615],
+    "countryCode": "FI"
+  },
+  {
+    "genreNames": ["Csárdás"],
+    "locationName": "Budapest, Hungary",
+    "coordinates": [47.4979, 19.0402],
+    "countryCode": "HU"
+  },
+  {
+    "genreNames": ["Balkan Brass (Trubači)"],
+    "locationName": "Guča, Serbia",
+    "coordinates": [43.7739, 20.2289],
+    "countryCode": "RS"
+  },
+  {
+    "genreNames": ["Persian Classical Music"],
+    "locationName": "Tehran, Iran",
+    "coordinates": [35.6892, 51.3890],
+    "countryCode": "IR"
+  },
+  {
+    "genreNames": ["Dabke"],
+    "locationName": "Beirut, Lebanon",
+    "coordinates": [33.8938, 35.5018],
+    "countryCode": "LB"
+  },
+  {
+    "genreNames": ["Québécois Folk"],
+    "locationName": "Montreal, Canada",
+    "coordinates": [45.5017, -73.5673],
+    "countryCode": "CA"
+  },
+  {
+    "genreNames": ["Mongolian Throat Singing (Khoomei)"],
+    "locationName": "Ulaanbaatar, Mongolia",
+    "coordinates": [47.8864, 106.9057],
+    "countryCode": "MN"
+  },
+  {
+    "genreNames": ["Kundiman"],
+    "locationName": "Manila, Philippines",
+    "coordinates": [14.5995, 120.9842],
+    "countryCode": "PH"
+  },
+  {
+    "genreNames": ["Dubstep"],
+    "locationName": "Croydon, London, UK",
+    "coordinates": [51.3762, -0.0982],
+    "countryCode": "GB"
+  },
+  {
+    "genreNames": ["Trance"],
+    "locationName": "Frankfurt, Germany",
+    "coordinates": [50.1109, 8.6821],
+    "countryCode": "DE"
+  },
+  {
+    "genreNames": ["Synth-pop"],
+    "locationName": "Sheffield, UK",
+    "coordinates": [53.3811, -1.4701],
+    "countryCode": "GB"
+  },
+  {
+    "genreNames": ["Didgeridoo Music"],
+    "locationName": "Arnhem Land, Australia",
+    "coordinates": [-12.7833, 134.5000],
+    "countryCode": "AU"
+  },
+  {
+    "genreNames": ["Moteatea (Maori Chant)"],
+    "locationName": "Rotorua, New Zealand",
+    "coordinates": [-38.1368, 176.2497],
+    "countryCode": "NZ"
+  },
+  {
+    "genreNames": ["Kui"],
+    "locationName": "Almaty, Kazakhstan",
+    "coordinates": [43.2220, 76.8512],
+    "countryCode": "KZ"
+  },
+  {
+    "genreNames": ["Manele"],
+    "locationName": "Bucharest, Romania",
+    "coordinates": [44.4268, 26.1025],
+    "countryCode": "RO"
+  },
+  {
+    "genreNames": ["Merengue"],
+    "locationName": "Dominican Republic",
+    "coordinates": [18.7357, -70.1627],
+    "countryCode": "DO"
+  },
+  {
+    "genreNames": ["Sega"],
+    "locationName": "Mauritius/Réunion",
+    "coordinates": [-20.3484, 57.5522],
+    "countryCode": "MU"
+  },
+  {
+    "genreNames": ["Jit"],
+    "locationName": "Zimbabwe",
+    "coordinates": [-19.0154, 29.1549],
+    "countryCode": "ZW"
   }
-] 
+]
