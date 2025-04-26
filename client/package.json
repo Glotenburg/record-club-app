@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "netlify:build": "npm install --legacy-peer-deps && npm run build"
+    "netlify:build": "npm install --legacy-peer-deps && ls -la src && cp -v src/App.js src/app.js 2>/dev/null || true && npm run build"
   },
   "eslintConfig": {
     "extends": [
