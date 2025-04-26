@@ -53,3 +53,14 @@ code {
 .prose table th {
   background-color: #334155;
 }
+
+/* Add this CSS for the custom map marker */
+.red-map-dot {
+  background-color: #D32F2F; /* A nice shade of red */
+  border-radius: 50%;      /* Makes it a circle */
+  display: block;            /* Needed for size */
+  width: 12px;             /* Corresponds to iconSize[0] */
+  height: 12px;            /* Corresponds to iconSize[1] */
+  border: 1px solid #B71C1C; /* Slightly darker border */
+  box-shadow: 0 0 3px rgba(0,0,0,0.5); /* Subtle shadow */
+}

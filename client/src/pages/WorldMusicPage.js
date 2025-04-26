@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Tooltip, GeoJSON } from 'react-leaflet';
+import L from 'leaflet'; // <-- Import L 
 // Remember to import leaflet.css in your main App.js or index.js!
 // import 'leaflet/dist/leaflet.css'; 
 
 // Assuming you have a GeoJSON file like this
 // import defaultCountriesData from '../data/world-countries.json';
+
+// --- Custom Icon Definition ---
+const redDotIcon = new L.divIcon({
+  html: '<span class="red-map-dot" />',
+  className: '', // Important to override default background/border
+  iconSize: [12, 12], // Size of the icon
+  iconAnchor: [6, 6], // Point of the icon which will correspond to marker's location
+});
+// --- End Custom Icon Definition ---
 
 function WorldMusicPage() {
   const [genresData, setGenresData] = useState([]);
@@ -87,6 +97,7 @@ function WorldMusicPage() {
         <Marker 
           key={index} 
           position={genre.coordinates}
+          icon={redDotIcon}
           eventHandlers={{
             click: (e) => {
               // Stop propagation to prevent map click handler from deselecting immediately
