@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 
 // Import pages & components
@@ -19,12 +19,28 @@ import { AuthContext } from './context/AuthContext';
 function App() {
   const { isAuthenticated, user, logout } = useContext(AuthContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const showBackButton = location.pathname === '/world-music';
 
   return (
     <div className="min-h-screen flex flex-col background-image text-gray-100">
       <header className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 shadow-lg py-4 sticky top-0 z-50">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center">
+            {showBackButton && (
+              <button 
+                onClick={() => navigate(-1)} 
+                className="mr-3 p-2 text-amber-400 hover:text-amber-300 transition-colors duration-200"
+                aria-label="Go back"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            )}
+
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mr-3 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
               <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
             </svg>
