@@ -2,7 +2,7 @@
 
 [build]
   # Build settings for the React app inside the 'client' folder
-  command = "npm run build"   # The command to build your React app
+  command = "npm run netlify:build"   # The command to build your React app with legacy-peer-deps
   publish = "build"    # The folder CRA outputs the build to
   base    = "client"          # Tell Netlify the app lives in the 'client' subfolder
 
