@@ -110,29 +110,34 @@ function PostFormPage() {
           {/* TinyMCE Editor */}
           <div className="bg-slate-700 rounded-md overflow-hidden">
             <Editor
-              apiKey="no-api-key" // You can use TinyMCE without an API key for development
+              apiKey="9w72hm3ieljb8enaqurfw321tdbx1zlewduq2m2ypgl9xjxw" // Added your API key
               initialValue={content}
               value={content}
               onEditorChange={(newContent) => setContent(newContent)}
               init={{
                 height: 300,
-                menubar: false,
-                skin: "oxide-dark",
+                menubar: false, // Kept menubar false as per your previous setting
+                skin: "oxide-dark", // Kept dark mode settings
                 content_css: "dark",
                 plugins: [
-                  'advlist autolink lists link image charmap print preview anchor',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table paste code help wordcount'
+                  // Core editing features
+                  'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+                  // Your account includes a free trial of TinyMCE premium features
+                  'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
                 ],
-                toolbar: `
-                  undo redo | formatselect | bold italic backcolor |
-                  alignleft aligncenter alignright alignjustify |
-                  bullist numlist outdent indent | table | removeformat | help
-                `,
-                placeholder: "Write your deep dive here... Tables and formatting from Google Docs will work here!",
-                paste_data_images: true,
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                placeholder: "Write your deep dive here... Tables and formatting from Google Docs will work here!", // Kept your placeholder
+                paste_data_images: true, // Kept paste settings
                 paste_enable_default_filters: true,
                 paste_word_valid_elements: "table,tr,td,th,thead,tfoot,tbody,p,br,a,ul,ol,li,b,strong,i,em,h1,h2,h3,h4,h5,h6",
+                // Added from TinyMCE snippet
+                tinycomments_mode: 'embedded',
+                tinycomments_author: user?.username || 'Guest User', // Use logged-in user's name or a default
+                mergetags_list: [
+                  { value: 'First.Name', title: 'First Name' },
+                  { value: 'Email', title: 'Email' },
+                ],
+                ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('AI Assistant needs configuration')),
               }}
             />
           </div>
