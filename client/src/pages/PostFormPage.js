@@ -110,7 +110,7 @@ function PostFormPage() {
           {/* TinyMCE Editor */}
           <div className="bg-slate-700 rounded-md overflow-hidden">
             <Editor
-              apiKey="9w72hm3ieljb8enaqurfw321tdbx1zlewduq2m2ypgl9xjxw" // Added your API key
+              apiKey="9w72hm3ieljb8enaqurfw321tdbx1zlewduq2m2ypgl9xjxw" // Reverted to hardcoded key
               initialValue={content}
               value={content}
               onEditorChange={(newContent) => setContent(newContent)}

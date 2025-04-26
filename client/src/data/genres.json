@@ -1,0 +1,74 @@
+[
+  {
+    "genreNames": ["Blues", "Jazz", "Gospel"],
+    "locationName": "Mississippi Delta / New Orleans, USA",
+    "coordinates": [31.96, -89.73], 
+    "countryCode": "US" 
+  },
+  {
+    "genreNames": ["Country", "Bluegrass"],
+    "locationName": "Appalachian Region / Nashville, USA",
+    "coordinates": [36.17, -86.78],
+    "countryCode": "US"
+  },
+  {
+    "genreNames": ["Reggae", "Ska", "Dancehall"],
+    "locationName": "Kingston, Jamaica",
+    "coordinates": [17.98, -76.80],
+    "countryCode": "JM"
+  },
+  {
+    "genreNames": ["Bossa Nova", "Samba"],
+    "locationName": "Rio de Janeiro / Salvador, Brazil",
+    "coordinates": [-18.0, -43.0], 
+    "countryCode": "BR"
+  },
+  {
+    "genreNames": ["Tango"],
+    "locationName": "Buenos Aires, Argentina / Montevideo, Uruguay",
+    "coordinates": [-34.6, -58.38],
+    "countryCode": "AR" 
+  },
+  {
+    "genreNames": ["Flamenco"],
+    "locationName": "Andalusia, Spain",
+    "coordinates": [37.39, -5.98],
+    "countryCode": "ES"
+  },
+  {
+    "genreNames": ["Highlife", "Afrobeat"],
+    "locationName": "Ghana / Nigeria",
+    "coordinates": [7.0, 2.0],
+    "countryCode": "GH" 
+  },
+  {
+    "genreNames": ["Rai"],
+    "locationName": "Oran, Algeria",
+    "coordinates": [35.70, -0.63],
+    "countryCode": "DZ"
+  },
+  {
+    "genreNames": ["Classical (Western)"],
+    "locationName": "Vienna, Austria / Central Europe",
+    "coordinates": [48.21, 16.37],
+    "countryCode": "AT"
+  },
+  {
+    "genreNames": ["Hindustani Classical", "Bollywood Film Music"],
+    "locationName": "North India / Mumbai, India",
+    "coordinates": [24.0, 76.0], 
+    "countryCode": "IN"
+  },
+  {
+    "genreNames": ["Gamelan"],
+    "locationName": "Indonesia (Java, Bali)",
+    "coordinates": [-7.5, 111.0],
+    "countryCode": "ID"
+  },
+  {
+    "genreNames": ["Fado"],
+    "locationName": "Lisbon, Portugal",
+    "coordinates": [38.72, -9.14],
+    "countryCode": "PT"
+  }
+] 
