@@ -56,12 +56,10 @@ function WorldMusicPage() {
     };
   };
 
-  // Stamen Watercolor Map Tile URL and Attribution
-  const tileUrl = 'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg';
+  // CartoDB Positron Map Tile URL and Attribution (Replaced Stamen)
+  const tileUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
   const attribution = 
-    'Map tiles by <a href="http://stamen.com">Stamen Design</a>, ' + 
-    '<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; ' + 
-    'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
   return (
     <MapContainer 
