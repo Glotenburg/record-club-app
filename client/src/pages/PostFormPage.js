@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Editor } from '@tinymce/tinymce-react';
 import { createPost, getPostById, updatePost } from '../services/postService';
 import { AuthContext } from '../context/AuthContext';
 
@@ -108,22 +107,31 @@ function PostFormPage() {
           <label htmlFor="content" className="block text-sm font-medium text-gray-300 mb-1">
             Content
           </label>
-          {/* CKEditor for better table support */}
+          {/* TinyMCE Editor */}
           <div className="bg-slate-700 rounded-md overflow-hidden">
-            <CKEditor
-              editor={ClassicEditor}
-              data={content}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                setContent(data);
-              }}
-              config={{
+            <Editor
+              apiKey="no-api-key" // You can use TinyMCE without an API key for development
+              initialValue={content}
+              value={content}
+              onEditorChange={(newContent) => setContent(newContent)}
+              init={{
+                height: 300,
+                menubar: false,
+                skin: "oxide-dark",
+                content_css: "dark",
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic backcolor | \
+                  alignleft aligncenter alignright alignjustify | \
+                  bullist numlist outdent indent | table | removeformat | help',
                 placeholder: "Write your deep dive here... Tables and formatting from Google Docs will work here!",
-                // Custom CKEditor config can go here
-                // This adds better table support
-                table: {
-                  contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-                },
+                paste_data_images: true,
+                paste_enable_default_filters: true,
+                paste_word_valid_elements: "table,tr,td,th,thead,tfoot,tbody,p,br,a,ul,ol,li,b,strong,i,em,h1,h2,h3,h4,h5,h6",
               }}
             />
           </div>

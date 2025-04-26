@@ -18,55 +18,38 @@ code {
     monospace;
 }
 
-/* CKEditor custom styling for dark theme */
-.ck-editor__editable {
-  min-height: 250px !important;
-  color: #e5e7eb !important;
+/* TinyMCE custom styling for dark theme */
+.tox .tox-edit-area__iframe {
   background-color: #1e293b !important;
 }
 
-.ck.ck-toolbar {
+.tox .tox-toolbar,
+.tox .tox-toolbar__primary,
+.tox .tox-toolbar__overflow {
   background-color: #334155 !important;
-  border-color: #475569 !important;
 }
 
-.ck.ck-button,
-.ck.ck-button .ck-button__label {
+.tox .tox-tbtn {
   color: #e5e7eb !important;
 }
 
-.ck.ck-button:hover:not(.ck-disabled),
-.ck.ck-button.ck-on {
+.tox .tox-tbtn:hover {
   background-color: #475569 !important;
 }
 
-/* Improve table styles */
-.ck-content table {
+/* Handle table display in content */
+.prose table {
   border-collapse: collapse;
   width: 100%;
   margin: 1em 0;
 }
 
-.ck-content table td,
-.ck-content table th {
+.prose table td,
+.prose table th {
   border: 1px solid #475569;
   padding: 8px;
 }
 
-.ck-content table th {
+.prose table th {
   background-color: #334155;
-}
-
-/* Improve dropdown styling */
-.ck.ck-dropdown .ck-dropdown__panel {
-  background-color: #1e293b !important;
-  border-color: #475569 !important;
-}
-
-.ck.ck-dropdown .ck-dropdown__panel .ck-list__item {
-  color: #e5e7eb !important;
-}
-
-.ck.ck-dropdown .ck-dropdown__panel .ck-list__item:hover:not(.ck-disabled) {
-  background-color: #334155 !important;
 }
