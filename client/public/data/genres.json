@@ -1,0 +1,92 @@
+[
+  {
+    "genreNames": ["Reggae", "Ska", "Dub"],
+    "locationName": "Kingston, Jamaica",
+    "coordinates": [17.9833, -76.8000],
+    "countryCode": "JM"
+  },
+  {
+    "genreNames": ["Blues", "Jazz"],
+    "locationName": "New Orleans, USA",
+    "coordinates": [29.9511, -90.0715],
+    "countryCode": "US"
+  },
+  {
+    "genreNames": ["Tango"],
+    "locationName": "Buenos Aires, Argentina",
+    "coordinates": [-34.6037, -58.3816],
+    "countryCode": "AR"
+  },
+  {
+    "genreNames": ["Samba", "Bossa Nova"],
+    "locationName": "Rio de Janeiro, Brazil",
+    "coordinates": [-22.9068, -43.1729],
+    "countryCode": "BR"
+  },
+  {
+    "genreNames": ["Flamenco"],
+    "locationName": "Andalusia, Spain",
+    "coordinates": [37.5000, -4.9833],
+    "countryCode": "ES"
+  },
+  {
+    "genreNames": ["Celtic Folk"],
+    "locationName": "Dublin, Ireland",
+    "coordinates": [53.3498, -6.2603],
+    "countryCode": "IE"
+  },
+  {
+    "genreNames": ["Bollywood Music"],
+    "locationName": "Mumbai, India",
+    "coordinates": [19.0760, 72.8777],
+    "countryCode": "IN"
+  },
+  {
+    "genreNames": ["Highlife"],
+    "locationName": "Accra, Ghana",
+    "coordinates": [5.6037, -0.1870],
+    "countryCode": "GH"
+  },
+  {
+    "genreNames": ["Soukous"],
+    "locationName": "Kinshasa, DR Congo",
+    "coordinates": [-4.4419, 15.2663],
+    "countryCode": "CD"
+  },
+  {
+    "genreNames": ["Afrobeat"],
+    "locationName": "Lagos, Nigeria",
+    "coordinates": [6.5244, 3.3792],
+    "countryCode": "NG"
+  },
+  {
+    "genreNames": ["Fado"],
+    "locationName": "Lisbon, Portugal",
+    "coordinates": [38.7223, -9.1393],
+    "countryCode": "PT"
+  },
+  {
+    "genreNames": ["Calypso", "Soca"],
+    "locationName": "Port of Spain, Trinidad and Tobago",
+    "coordinates": [10.6667, -61.5167],
+    "countryCode": "TT"
+  },
+  {
+    "genreNames": ["Rai"],
+    "locationName": "Oran, Algeria",
+    "coordinates": [35.6911, -0.6417],
+    "countryCode": "DZ"
+  },
+  {
+    "genreNames": ["K-Pop"],
+    "locationName": "Seoul, South Korea",
+    "coordinates": [37.5665, 126.9780],
+    "countryCode": "KR"
+  },
+  {
+    "genreNames": ["Throat Singing (Tuvan)"],
+    "locationName": "Tuva Republic, Russia",
+    "coordinates": [51.7167, 94.4333],
+    "countryCode": "RU"
+  }
+] 

@@ -11,6 +11,7 @@ import ProfilePage from './pages/ProfilePage';
 import DeepDivePage from './pages/DeepDivePage';
 import SinglePostPage from './pages/SinglePostPage';
 import PostFormPage from './pages/PostFormPage';
+import WorldMusicPage from './pages/WorldMusicPage';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import { AuthContext } from './context/AuthContext';
@@ -54,6 +55,11 @@ function App() {
               <li>
                 <Link to="/deep-dive" className="text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium">
                   Deep Dive
+                </Link>
+              </li>
+              <li>
+                <Link to="/world-music" className="text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium">
+                  World Music
                 </Link>
               </li>
               {!isAuthenticated ? (
@@ -113,6 +119,11 @@ function App() {
                   Deep Dive
                 </Link>
               </li>
+              <li>
+                <Link to="/world-music" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-200 hover:text-amber-400 transition-colors duration-200 font-medium py-2">
+                  World Music
+                </Link>
+              </li>
               {!isAuthenticated ? (
                 <>
                   <li>
@@ -166,6 +177,7 @@ function App() {
           <Route path="/profile/:userId" element={<ProfilePage />} />
           <Route path="/deep-dive" element={<DeepDivePage />} />
           <Route path="/deep-dive/:postId" element={<SinglePostPage />} />
+          <Route path="/world-music" element={<WorldMusicPage />} />
 
           {/* Protected Routes */}
           <Route element={<PrivateRoute />}>
