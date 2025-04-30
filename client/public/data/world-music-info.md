@@ -4,7 +4,8 @@ World music is a term used broadly to classify musical styles from diverse cultu
 
 Originating independently in academic and music industry contexts during the latter half of the 20th century, the term has become both influential and highly contested. Its inherent ambiguity, coupled with its function as a marketing category, has led to significant criticism regarding its vague definition, commercial motivations, and perceived reinforcement of ethnocentrism, cultural homogenization, and exoticism. The term simultaneously operates as an academic concept with idealistic roots, a pragmatic tool for the music industry, and a focal point for critical cultural debate.
 
-![Picture of diversity](client/public/images/worldmusic.png "World Music")
+![Picture of diversity](/images/worldmusic.png "World Music")  
+*You might need to change `/images/worldmusic.png` to the correct path for your setup.*
 
 ## Etymology and Origins
 
@@ -42,16 +43,16 @@ The term was rapidly adopted by the media and the broader music industry. Its st
 
 ## Table 1: Timeline of Key Events Related to the Term "World Music"
 
-| Date/Period   | Event                                                              | Significance                                                                                         | Snippet IDs |
-| :------------ | :----------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- | :---------- |
-| Early 1960s   | Robert E. Brown coins "world music" at Wesleyan University         | Academic origin with distinct philosophical intent (performance, preservation, global culture)        | 1           |
-| 1982          | First WOMAD (World of Music, Arts and Dance) festival held         | Early influential platform for global artists, co-founded by Peter Gabriel                           | 3           |
-| 1986          | Paul Simon releases *Graceland* | Increased Western market interest in non-Western sounds, catalyst for industry action                | 5           |
-| June 1987     | London meeting of indie labels adopts "World Music" as marketing term | Popularization of the term for commercial/retail purposes, shifting its meaning                    | 6           |
-| 1990          | Billboard introduces World Music chart                             | Industry institutionalization and recognition                                                        | 9           |
-| 1991/1992     | Grammy Award for Best World Music Album established              | Major industry validation, created platform but also became focus of critique regarding categorization | 9           |
-| 1999          | David Byrne publishes "I Hate World Music" editorial in NYT        | Influential critique articulating key problems: exoticism, dismissal, Western hegemony             | 6           |
-| 2020/2021     | Grammy category renamed "Best Global Music Album"                  | Acknowledgment of criticisms (colonialism), shift in terminology, sparks new debate                 | 9           |
+| Date/Period | Event                                                              | Significance                                                                                         | Snippet IDs |
+| :---------- | :----------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- | :---------- |
+| Early 1960s | Robert E. Brown coins "world music" at Wesleyan University         | Academic origin with distinct philosophical intent (performance, preservation, global culture)        | 1           |
+| 1982        | First WOMAD (World of Music, Arts and Dance) festival held         | Early influential platform for global artists, co-founded by Peter Gabriel                           | 3           |
+| 1986        | Paul Simon releases *Graceland* | Increased Western market interest in non-Western sounds, catalyst for industry action                | 5           |
+| June 1987   | London meeting of indie labels adopts "World Music" as marketing term | Popularization of the term for commercial/retail purposes, shifting its meaning                    | 6           |
+| 1990        | Billboard introduces World Music chart                             | Industry institutionalization and recognition                                                        | 9           |
+| 1991/1992   | Grammy Award for Best World Music Album established              | Major industry validation, created platform but also became focus of critique regarding categorization | 9           |
+| 1999        | David Byrne publishes "I Hate World Music" editorial in NYT        | Influential critique articulating key problems: exoticism, dismissal, Western hegemony             | 6           |
+| 2020/2021   | Grammy category renamed "Best Global Music Album"                  | Acknowledgment of criticisms (colonialism), shift in terminology, sparks new debate                 | 9           |
 
 ## Definitions and Scope
 
@@ -61,97 +62,103 @@ A central challenge surrounding the term "world music" is its inherent ambiguity
 
 The term is notoriously nebulous. Various definitions have been proposed or are implicitly used:
 
-* **"All the music in the world"**: While sometimes invoked, this definition is generally considered too broad to be meaningful. Robert Brown's original academic concept perhaps approached this ideal.
-* **Folk music from around the world**: An early understanding associated with Brown's coining.
-* **Music from non-English speaking countries**: A common shorthand used in the industry.
-* **Music combining Western popular styles (pop, rock) with non-Western genres**: Acknowledges the hybridity common in the category.
-* **"Local music from out there" / "Someone else's local music"**: Captures the sense of distance from the presumed Western listener.
-* **Definition by opposition**: Functionally, music defined against Western popular music and Western art music; a catch-all for music not fitting established Western categories.
+* "All the music in the world": Too broad to be meaningful, though perhaps close to Brown's original ideal.
+* Folk music from around the world: An early understanding.
+* Music from non-English speaking countries: A common industry shorthand.
+* Music combining Western popular styles (pop, rock) with non-Western genres: Acknowledges hybridity.
+* "Local music from out there" / "Someone else's local music": Captures the sense of distance.
+* **Definition by opposition:** Functionally, music defined against Western popular/art music; a catch-all for the "non-Western".
 
-A significant contradiction lies in the term's frequent association with "traditional," "indigenous," or "roots" music, implying authenticity, yet the category explicitly includes contemporary popular music styles and fusion genres.
+A significant contradiction lies in the term's frequent association with "traditional," "indigenous," or "roots" music, implying authenticity, yet the category explicitly includes contemporary popular music and fusion genres.
 
 ### Included Genres, Styles, and Artists
 
-The scope of "world music" is vast, encompassing an enormous diversity of sounds:
+The scope is vast. Examples cited include:
 
-* **Geographic Regions**: Music from Africa, Asia, Latin America, the Middle East, the Caribbean, Eastern Europe, Nordic countries, Oceania, and specific folk traditions within Western countries.
-* **Diverse Styles**: Tuvan throat singing, Zimbabwean guitar bands, Pakistani Qawwali, Cajun fiddlers, Hawaiian slack-key guitar, Indian classical (Ravi Shankar), West African drumming, Indonesian gamelan, Chinese opera, Japanese koto, Tibetan chants, Balkan village music (The Mystery Of The Bulgarian Voices), Nordic folk, Latin genres (Salsa, Samba, Tango, Cumbia, Bossa Nova, Reggaeton), Flamenco (Paco de Lucía), Arabic Tarab, North African Rai, etc.
-* **Specific Genres**: Celtic music (Alan Stivell, Clannad, Enya), Afrobeat (Fela Kuti), Highlife, Reggae (sometimes included), Nigerian Jùjú, South African Mbaqanga (Ladysmith Black Mambazo).
-* **Fusion Genres**: Worldbeat, World Fusion, Global Fusion, Ethnic Fusion. **Worldbeat** specifically denotes blends of Western pop/rock with world/traditional elements (e.g., Afro-Celt Sound System, Ethio-jazz like Mulatu Astatke).
-* **Associated Artists**: Peter Gabriel (Real World Records, WOMAD), David Byrne (Luaka Bop), Ry Cooder (Buena Vista Social Club), Youssou N'Dour, Angélique Kidjo, Manu Dibango, Hugh Masekela, Miriam Makeba, Zap Mama, Johnny Clegg, Nusrat Fateh Ali Khan, and countless others.
+* **Geographic Regions:** Music from Africa, Asia, Latin America, the Middle East, the Caribbean, Eastern Europe, Nordic countries, Oceania, specific Western folk traditions.
 
-Ultimately, the category's boundaries are defined more by **exclusion** (non-mainstream Anglo-American pop/rock, Western classical) than by internal musical coherence. This lack of unity, driven by its function as a catch-all for the "non-Western," fuels criticisms of homogenization and makes precise musical description problematic. Boundaries remain porous and market-dependent.
+* **Diverse Styles:** Tuvan throat singing, Zimbabwean guitar bands, Qawwali, Cajun fiddling, Hawaiian slack-key guitar, Indian classical (Hindustani, Carnatic - e.g., Ravi Shankar), West African drumming/kora, Gamelan, Chinese opera, Koto music, Tibetan chants, Balkan village music (e.g., The Mystery Of The Bulgarian Voices), Nordic folk, Salsa, Samba, Tango, Cumbia, Mambo, Bossa Nova, Merengue, Bachata, Reggaeton, Flamenco (e.g., Paco de Lucía), Tarab, Rai, etc.
+
+* **Specific Genres:** Celtic music (e.g., Alan Stivell, Clannad, Enya), Afrobeat (Fela Kuti), Highlife, Reggae, Jùjú music, Mbaqanga (Ladysmith Black Mambazo).
+
+* **Fusion Genres:** Worldbeat, World Fusion, Global Fusion, Ethnic Fusion (e.g., Afro-Celt Sound System, Ethio-jazz - Mulatu Astatke).
+
+* **Associated Artists:** Peter Gabriel (Real World Records, WOMAD), David Byrne (Luaka Bop), Ry Cooder (Buena Vista Social Club), Youssou N'Dour, Angélique Kidjo, Manu Dibango, Hugh Masekela, Miriam Makeba, Zap Mama, Johnny Clegg, Nusrat Fateh Ali Khan, countless others.
+
+The category's boundaries are defined more by excluding mainstream Anglo-American pop/rock and Western classical music than by internal coherence. This lack of unity fuels criticisms. 
+
+Boundaries are porous; classification can depend inconsistently on perceived origin (e.g., Filipina pop singer vs. Swedish pop singer).
 
 ## Criticism and Controversy
 
-The term "world music" has faced extensive criticism from academics, artists, critics, and industry insiders.
+The term has faced extensive criticism since its popularization.
 
 ### Ethnocentrism and Western Bias ("West vs. the Rest")
 
-A primary criticism is that "world music" is **inherently ethnocentric**, a Western category imposed on the rest of the globe. It defines non-Western music relative to Western pop/art music, positioning the West as the "norm" and everything else as "Other." This framework is reinforced by Western-dominated industry structures and echoes earlier biased terms like "ethnic" or "primitive" music. David Byrne highlighted this "us" vs. "them" divide.
+Critics argue "world music" is a Western category imposed on the rest of the globe, positioning Western music as the norm and all others as "Other." This reflects historical biases and the dominance of Western music industry structures. 
+
+David Byrne noted it creates an "us vs. them" divide.
 
 ### Homogenization and Oversimplification
 
-The term lumps together vastly different traditions (e.g., Qawwali, Afrobeats, Japanese Koto) under one label, obscuring their unique cultural, historical, and musical specifics. This **oversimplification** serves marketing convenience over cultural understanding, treating diverse cultures as a monolithic entity.
+The term lumps together vastly different traditions, obscuring their unique cultural, historical, and musical specificities. This serves marketing convenience over accurate representation.
 
 ### Commercialization, Commodification, and Exploitation
 
-Originating from the 1987 marketing meeting, the term is criticized as primarily a tool for Western markets, prioritizing **marketability and profit** over cultural sensitivity or artistic integrity. Concerns include potential economic exploitation of non-Western artists and the packaging of cultural difference as a commodity. The narrative of Western artists "discovering" music can perpetuate colonial patterns.
+Stemming from its marketing origins, the term prioritizes Western tastes and profit. Concerns exist about unfair compensation for non-Western artists and the packaging of cultural difference as a commodity, sometimes echoing colonial patterns.
 
 ### Exoticism and Othering
 
-"World music" is accused of promoting **exoticism**, framing non-Western music as strange or foreign from a Western viewpoint. David Byrne called it a "distancing mechanism," making the music "cute, weird but safe" and hindering genuine engagement. Critics like Anastasia Tsioulcas noted it "smacks of cultural colonialism" and labels diverse styles as the "exotic Other," connecting to broader issues of Orientalism and problematic representations.
+The label can frame non-Western music as strange or "exotic," hindering genuine engagement. David Byrne called it a "distancing mechanism." NPR's Anastasia Tsioulcas noted it "smacks of... cultural colonialism" and forces diverse styles under the label of "exotic Other."
 
 ### Authenticity Debates
 
-The category often implies **"authenticity"** or "tradition," which is criticized for:
+The category often implies "authenticity" or "tradition," which is problematic:
 
-* **Essentialism**: Presenting cultures as static, ignoring dynamism and hybridity.
-* **Gatekeeping**: Empowering Western figures to define "authentic" non-Western music.
-* **Stereotyping**: Pressuring artists to conform to Western ideas of "traditional" sounds.
-* **Ignoring Hybridity**: Struggling to value blended forms vital to contemporary music.
-
-David Byrne critiqued the Western obsession with authenticity and the myth of the "untutored savant."
+* **Essentialism:** Risks presenting cultures as static.
+* **Gatekeeping:** Empowers Westerners to define "authentic."
+* **Stereotyping:** Pressures artists to conform to Western ideas of "traditional."
+* **Ignoring Hybridity:** Struggles to value vital contemporary hybrid forms.
 
 ### Colonial Connotations
 
-Critics argue the term carries **connotations of colonialism** due to the historical context of Western categorization and exploitation of non-Western cultures. The "West vs. Rest" dichotomy, industry power imbalances, and defining global cultures from a Western viewpoint echo colonial practices. This was a factor in the Grammy category renaming.
+Critics argue the term echoes colonial practices through its "West vs. Rest" dichotomy, industry power imbalances, and the act of labeling diverse cultures from a dominant viewpoint. This influenced the Grammy renaming.
 
 ### Perspectives Summarized
 
-* **Academics/Ethnomusicologists**: Focus on theoretical weaknesses (ethnocentrism, homogenization, commercial distortion, colonial links). Many avoid or use the term critically.
-* **Artists**: Often express frustration at being stereotyped and lumped together, though some acknowledge historical visibility gains. Most prefer just "music."
-* **Industry/Critics**: Debate its utility versus harmful effects; some see it as outdated, others see a continued (problematic) need for categorization.
+* **Academics:** Focus on ethnocentrism, homogenization, commercial distortion, colonial links.
+* **Artists:** Express frustration with the label but sometimes acknowledge past visibility benefits.
+* **Industry/Critics:** Debate its utility vs. harm; some see it as outdated.
 
-These criticisms are interconnected, stemming from the imposition of a simplistic, Western-centric commercial logic onto complex global musical realities.
+The core issue is imposing Western commercial logic onto diverse global musical realities.
 
 ## Evolving Terminology and Current Status
 
-In response to criticism, terminology has evolved, though underlying issues often persist.
+Moves exist to replace or refine the term.
 
 ### The Shift to "Global Music"
 
-In November 2020, the Recording Academy renamed the "Best World Music Album" Grammy category to **"Best Global Music Album"** (effective 2021), later adding "Best Global Music Performance." The stated rationale was to move away from a term with "connotations of colonialism" towards language that is "more relevant, modern, and inclusive."
+In 2020/2021, the Grammys renamed the category "Best Global Music Album" (and added "Best Global Music Performance") citing colonialism connotations and aiming for inclusivity.
 
 ### Critique of "Global Music"
 
-The shift to "Global Music" is criticized by many as **merely semantic or superficial**, failing to address the core issue of grouping dissimilar genres based on non-Western origin. The "othering" effect and stereotypes are seen as continuing. Some suggest the new category might favor more commercially successful, internationally charting artists (like Afrobeats stars), potentially marginalizing more traditional styles. The adequacy of only a few categories for all non-Western music remains debated.
+Many see this as a superficial change that doesn't fix the core issue of homogenization. Some suggest it favors commercially successful, globally-influenced artists over more traditional styles. The limited number of categories remains contentious.
 
 ### Alternative Classifications and Approaches
 
-Dissatisfaction fuels calls for alternatives:
-
-* **Alternative Terms**: "Global Music," "International Music," "Folk Music," "Traditional Music," "Regional Music" (e.g., Latin, African), "Indigenous Music," "Ethnomusicology" (academic field), "World Beat." Each has nuances and potential issues.
-* **Specificity**: Using more precise genre, regional, or cultural labels is widely advocated.
-* **Academic/Analytical Frameworks**: Ethnomusicology uses detailed methods. Computational approaches analyze structural features (e.g., CantoCore) or cultural style via audio signals, aiming for objective analysis over market labels.
+* **Alternative Terms:** "International," "Folk," "Traditional," "Regional," "Indigenous," "World Beat," etc.
+* **Specificity:** Using specific genre/regional labels is preferred.
+* **Academic Frameworks:** Ethnomusicology uses detailed analysis; computational methods classify based on structure or style.
 
 ### The Role of Festivals and Institutions (e.g., WOMAD)
 
-Institutions like the **WOMAD (World of Music, Arts and Dance)** festival, co-founded by Peter Gabriel in 1982, navigate these debates. WOMAD aims to celebrate global diversity and foster collaboration. Co-founder Thomas Brooman acknowledged marketing needs but expressed uncertainty about the term's meaning. Despite critiques, WOMAD retains its name and remains a major platform.
+WOMAD continues under its original name, celebrating diversity while founders acknowledge ambiguity in the term "world music."
 
 ### Contemporary Relevance
 
-The relevance of broad categories is debated in the digital age. Streaming allows easier discovery of specifics, potentially making umbrella terms obsolete. However, some argue categorization remains useful for highlighting marginalized music in dominant Western markets. Despite criticism and shifts like "Global Music," the terms and the impulse to categorize persist, reflecting ongoing tensions between commerce, cultural representation, and listening habits in a globalized world.
+Debate continues on whether umbrella terms are needed in the streaming age. Some argue online discovery makes them obsolete; others see value in highlighting marginalized music in Western markets. 
+
+Despite criticism, the terms and the impulse to categorize persist.
 
 ## See Also
 
