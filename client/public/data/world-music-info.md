@@ -2,12 +2,14 @@
 
 World music is a term used broadly to classify musical styles from diverse cultures across the globe, particularly those lying outside the mainstream Western popular music and Western art music traditions.
 
+
 Originating independently in academic and music industry contexts during the latter half of the 20th century, the term has become both influential and highly contested. Its inherent ambiguity, coupled with its function as a marketing category, has led to significant criticism regarding its vague definition, commercial motivations, and perceived reinforcement of ethnocentrism, cultural homogenization, and exoticism. The term simultaneously operates as an academic concept with idealistic roots, a pragmatic tool for the music industry, and a focal point for critical cultural debate.
 
 ![Picture of diversity](/images/worldmusic.png "World Music")  
-*You might need to change `/images/worldmusic.png` to the correct path for your setup.*
+
 
 ## Etymology and Origins
+
 
 The term "world music" has distinct origins in academia and the commercial music industry, with significantly different initial intentions.
 
@@ -19,9 +21,13 @@ Brown stated that his primary motivation for coining "world music" was to differ
 
 Philosophically, Brown's concept of world music was idealistic, anticipating a future global culture where accelerated communication technology would allow all music to potentially belong to everyone. It aimed to view music from diverse cultures from a perspective "beyond culture," while simultaneously recognizing the critical need to preserve the vast diversity of human musical expression. This utopian vision, embodied in the Wesleyan World Music Program, created a vibrant musical environment in the 1960s and began to disseminate the term and the concept of "world music" to a wider public through musical events and performances. Brown's original concept, therefore, was focused on performance, preservation, and a future-oriented global musical landscape, rather than simply categorizing existing non-Western music for study or sale. This idealistic foundation contrasts sharply with the term's later adoption and redefinition by the music industry.
 
+
+
 ### Popularization as a Marketing Category
 
 While Brown coined the term academically in the 1960s, "world music" gained widespread currency and its most recognized meaning in the 1980s as a marketing category devised by the Western music industry.
+
+
 
 #### The 1980s Music Industry Context
 
@@ -29,13 +35,18 @@ The rise of "world music" as a commercial label was largely a response to specif
 
 However, record labels and retailers faced a practical problem: how to categorize and display this diverse music. Genres like Nigerian jùjú, Ghanaian highlife, or Pakistani qawwali did not fit neatly into existing sections like "Pop," "Rock," "Jazz," or "Classical." Pre-existing terms like "International," "Ethnic," or "Folk" were considered insufficient, potentially confusing, or carried negative connotations. "International" had limited currency, often associated with tourist souvenirs or academic field recordings. There was a need for a unified, marketable term.
 
+
+
 #### The 1987 London Meeting
 
 To address this challenge and capitalize on the growing interest sparked by artists like Simon and the increasing visibility of African musicians like Fela Kuti, Manu Dibango, Hugh Masekela, and Miriam Makeba, a pivotal meeting was held in a London pub on **June 29, 1987**. Initiated by executives from independent record labels such as Roger Armstrong (Ace Records) and Ben Mandelson (GlobeStyle), and attended by key figures in the UK roots and international music scene, including fRoots magazine founder Ian Anderson, the meeting's primary objective was explicitly commercial. They sought an umbrella term to improve the marketing, distribution, and retail visibility of non-Western music.
 
 Several names were suggested, including "world beat" (a term coined separately by DJ Dan Del Santo in Texas around 1983) and prefixing existing genres with words like "hot" or "tropical". Ultimately, **"World Music"** won after a show of hands. Crucially, the term was not initially intended to define a new musical genre itself, but rather to serve as a short-term marketing label for a specific campaign. The logic, articulated by Roger Armstrong, was to create a designated section—a "box" akin to "Jazz" or "Rock"—where retailers could confidently stock these otherwise hard-to-place releases, and where interested customers could browse or find music they might have heard on the radio.
 
+
+
 #### Commercial Rollout and Institutionalization
+
 
 Following the meeting, a coordinated marketing campaign was launched. This included designing distinctive two-color record sleeves with special offers and providing retailers with labels for shelf or rack edging to clearly mark the new "World Music" section. Leafleting campaigns and outreach to DJs, particularly outside London, were key strategies to build awareness and demand.
 
